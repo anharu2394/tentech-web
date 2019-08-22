@@ -26,7 +26,7 @@ export function useCurrentUser() {
   } 
   let loginUser = async (email, password) => {
     let data = { email, password }
-    fetch(endpoint("users/login"), {
+    fetch(endpoint("/users/login"), {
         method: "POST",
         mode: "cors",
         headers: {
