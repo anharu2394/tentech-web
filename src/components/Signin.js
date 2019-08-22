@@ -9,7 +9,7 @@ export function Signin(props) {
     <div>
       This is Home!
       {currentUser.loggedIn}
-      <RegisterForm {...currentUser.createUser}/>
+      <RegisterForm createUser={currentUser.createUser}/>
     </div>
   );
 }
