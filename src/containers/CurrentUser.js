@@ -9,7 +9,7 @@ export function useCurrentUser() {
   let [token, setToken] = useState("")
   let createUser = async (user) => {
     let data = { "user": user }
-    fetch(endpoint("users"), {
+    fetch(endpoint("/users"), {
         method: "POST",
         mode: "cors",
         headers: {
