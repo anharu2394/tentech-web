@@ -1,12 +1,31 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { loginUser } from "../requests"
 import { withRouter } from 'react-router-dom'
 import useReactRouter from 'use-react-router'
 import { Form, Button} from 'react-bulma-components'
+import { Editor } from 'slate-react'
+import { Value } from 'slate'
+
+const initialValue = Value.fromJSON({
+  document: {
+  	nodes: [
+    	{
+				object: 'block',
+				type: 'paragraph',
+				nodes: [
+					{
+						object: 'text',
+						text: 'A line of text in a paragraph.',
+					},
+				],
+			},
+  	],
+	},
+})
 
 function useProductForm() {
   let [title, setTitle] = useState("")
-  let [body, setBody] = useState("")
+  let [body, setBody] = useState(initialValue)
   let [duration, setDuration] = useState(0)
   let [img, setImg] = useState("")
   let [kind, setKind] = useState("")
@@ -14,8 +33,9 @@ function useProductForm() {
   return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags}
 }
 
+
 export const CreateProductForm = withRouter((props)  => {
-  let data = useProductForm()
+  let data = useProductForm(initialValue)
   console.log(props)
   const { history, location, match } = useReactRouter()
   let req_data = {
@@ -49,7 +69,7 @@ export const CreateProductForm = withRouter((props)  => {
 			<Form.Field>
 				<Form.Control>
       <Form.Label>説明</Form.Label>
-      <Form.Input nput type="text" value={data.body} onChange={e => data.setBody(e.target.value)} /> <br />
+      <Editor value={data.body} onChange={v => data.setBody(v.value)} /> <br />
 				</Form.Control>
       </Form.Field>
 			<Form.Field>
