@@ -1,5 +1,6 @@
 import React from 'react'
 import { Home } from './components/Home'
+import { Header } from './components/Header'
 import { Signin } from './components/Signin'
 import { Login } from './components/Login'
 import logo from './logo.svg'
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <div>
         <CurrentUser.Provider>
+          <Header />
           <Route path="/" exact component={Home} />
           <Route path="/signin" exact component={Signin} />
           <Route path="/login" exact component={Login} />
