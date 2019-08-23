@@ -4,7 +4,7 @@ import { Signin } from './components/Signin'
 import { Login } from './components/Login'
 import logo from './logo.svg'
 import './App.css'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 import { useCurrentUser } from "./containers/CurrentUser"
 import { createContainer } from "unstated-next"
 
