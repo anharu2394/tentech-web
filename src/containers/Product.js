@@ -24,10 +24,11 @@ export function useProduct() {
     })
     .then(r => r.json())
 		.then(j => {
+			console.log(product)
 			setProduct(j.product)
-			setAuthor(j.author)
+			setAuthor(j.user)
+			return j
 		})
-    .catch(e => console.log(e))
   } 
 	
   return {createProduct, fetchProduct, product, author}
