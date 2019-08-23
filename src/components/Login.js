@@ -1,14 +1,14 @@
 import React from "react"
-import { RegisterForm} from "./RegisterForm"
+import { LoginForm} from "./LoginForm"
 import { CurrentUser } from "../App"
 
-export function Signin(props) {
+export function Login(props) {
   let currentUser = CurrentUser.useContainer()
   console.log(currentUser)
   return (
     <div>
       Login!
-      <RegisterForm createUser={currentUser.createUser}/>
+      <LoginForm loginUser={currentUser.loginUser}/>
     </div>
   );
 }
