@@ -3,7 +3,7 @@ import { Section, Hero, Container, Heading } from 'react-bulma-components'
 import { CreateProductForm } from "./CreateProductForm";
 import { Product, CurrentUser } from "../App"
 
-export function Home() {
+export function Home(props) {
   let product = Product.useContainer()
   let user = CurrentUser.useContainer()
   return (
@@ -22,7 +22,7 @@ export function Home() {
         </Hero.Body>
       </Hero>
 
-      <CreateProductForm createProduct={product.createProduct} token={user.token} />
+      <CreateProductForm createProduct={product.createProduct} token={user.token} history={props.history} />
     </div>
   )
 }
