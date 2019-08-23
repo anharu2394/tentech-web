@@ -134,8 +134,53 @@ export const CreateProductForm = withRouter((props)  => {
       </Form.Field>
 			<Form.Field>
 				<Form.Control>
-      <Form.Label>説明</Form.Label>
-      <Editor value={data.body} onChange={v => data.setBody(v.value)} /> <br />
+					<Form.Label>説明</Form.Label>
+						<button
+							type="button"
+							onMouseDown={e => onMarkClick(e,'bold')}
+							className="tooltip-icon-button"
+						></button>
+					<Card>
+						<Card.Header>
+							<Level>
+								<Level.Item>
+									<Button type="button" onMouseDown={e => onMarkClick(e,'bold')}>
+                    <icon className="fas fa-bold" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+									<Button type="button" onMouseDown={e => onMarkClick(e,'italic')}>
+                    <icon className="fas fa-italic" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+									<Button type="button" onMouseDown={e => onMarkClick(e,'underlined')}>
+                    <icon className="fas fa-underline" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+									<Button type="button">
+                    <icon className="fas fa-quote-right" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+									<Button type="button">
+                    <icon className="fas fa-heading" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+								</Level.Item>
+							</Level>
+						</Card.Header>
+						<Card.Content>
+							<Editor 
+								value={data.body}
+								onChange={v => data.setBody(v.value)}
+								ref={e => editor=e} 
+								renderMark={renderMark}
+							/>
+						</Card.Content>
+					</Card>
 				</Form.Control>
       </Form.Field>
 			<Form.Field>
