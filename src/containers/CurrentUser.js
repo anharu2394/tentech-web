@@ -7,6 +7,11 @@ export function useCurrentUser() {
   let [user, setUser] = useState({})
   let [loggedIn, setLoggedIn] = useState(false)
   let [token, setToken] = useState("")
+  let reset = () => {
+    setUser({})
+    setLoggedIn(false)
+    setToken("")
+  }
   let createUser = async (user) => {
     let data = { "user": user }
     fetch(endpoint("/users"), {
