@@ -124,7 +124,7 @@ export const CreateProductForm = withRouter((props)  => {
   const hasBlock = type => {
     return data.body.blocks.some(node => node.type === type)
   }
-  const onClickBlock = (event, type) => {
+  const onBlockClick = (event, type) => {
     event.preventDefault()
 
     const { value } = editor
