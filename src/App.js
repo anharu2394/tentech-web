@@ -16,6 +16,7 @@ function App() {
         <CurrentUser.Provider>
           <Route path="/" exact component={Home} />
           <Route path="/signin" exact component={Signin} />
+          <Route path="/login" exact component={Login} />
         </CurrentUser.Provider>
       </div>
     </Router>
