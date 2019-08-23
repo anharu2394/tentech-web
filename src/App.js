@@ -25,7 +25,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/signin" exact component={Signin} />
             <Route path="/login" exact component={Login} />
-            <Route path="/:user/products/:uuid" exact component={ProductComponent} />
+            <Route path="/:user/products/:uuid" exact component={ProductComponent } />
           </Product.Provider>
         </CurrentUser.Provider>
       </div>
