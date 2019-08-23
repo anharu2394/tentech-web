@@ -236,11 +236,6 @@ export const CreateProductForm = withRouter((props)  => {
 			<Form.Field>
 				<Form.Control>
 					<Form.Label>説明</Form.Label>
-						<button
-							type="button"
-							onMouseDown={e => onMarkClick(e,'bold')}
-							className="tooltip-icon-button"
-						></button>
 					<Card>
 						<Card.Header>
 							<Level>
