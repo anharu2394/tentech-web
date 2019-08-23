@@ -24,7 +24,6 @@ export function useProduct() {
     })
     .then(r => r.json())
 		.then(j => {
-			console.log(product)
 			setProduct(j.product)
 			setAuthor(j.user)
 			return j
