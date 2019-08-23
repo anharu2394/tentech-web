@@ -33,8 +33,74 @@ function useProductForm() {
   return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags}
 }
 
-
 export const CreateProductForm = withRouter((props)  => {
+	let editor
+  const DEFAULT_NODE = 'paragraph'
+	const onMarkClick = (e, type) => {
+		e.preventDefault()
+		editor.toggleMark(type)
+	}
+  const hasBlock = type => {
+    return data.body.blocks.some(node => node.type === type)
+  }
+  const onClickBlock = (event, type) => {
+    event.preventDefault()
+
+    const { value } = editor
+    const { document } = value
+
+    // Handle everything but list buttons.
+    if (type !== 'bulleted-list' && type !== 'numbered-list') {
+      const isActive = hasBlock(type)
+      const isList = hasBlock('list-item')
+
+      if (isList) {
+        editor
+          .setBlocks(isActive ? DEFAULT_NODE : type)
+          .unwrapBlock('bulleted-list')
+          .unwrapBlock('numbered-list')
+      } else {
+        editor.setBlocks(isActive ? DEFAULT_NODE : type)
+      }
+    } else {
+      // Handle the extra wrapping required for list buttons.
+      const isList = hasBlock('list-item')
+      const isType = value.blocks.some(block => {
+        return !!document.getClosest(block.key, parent => parent.type === type)
+      })
+
+      if (isList && isType) {
+        editor
+          .setBlocks(DEFAULT_NODE)
+          .unwrapBlock('bulleted-list')
+          .unwrapBlock('numbered-list')
+      } else if (isList) {
+        editor
+          .unwrapBlock(
+            type === 'bulleted-list' ? 'numbered-list' : 'bulleted-list'
+          )
+          .wrapBlock(type)
+      } else {
+        editor.setBlocks('list-item').wrapBlock(type)
+      }
+    }
+  }
+
+	const renderMark = (props, editor, next) => {
+    const { children, mark, attributes } = props
+      switch (mark.type) {
+            case 'bold':
+                return <strong {...attributes}>{children}</strong>
+            case 'code':
+                return <code {...attributes}>{children}</code>
+            case 'italic':
+                return <em {...attributes}>{children}</em>
+            case 'underlined':
+                return <u {...attributes}>{children}</u>
+            default:
+              return next()
+      }
+	}
   let data = useProductForm(initialValue)
   console.log(props)
   const { history, location, match } = useReactRouter()
