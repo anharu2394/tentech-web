@@ -1,7 +1,11 @@
 import React, { useEffect} from "react"
 import { Section, Hero, Container, Heading } from 'react-bulma-components'
+import { CreateProductForm } from "./CreateProductForm";
+import { Product, CurrentUser } from "../App"
 
 export function Home() {
+  let product = Product.useContainer()
+  let user = CurrentUser.useContainer()
   return (
     <div>
       <Hero color="primary" size="medium">
