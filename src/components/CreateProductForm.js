@@ -255,13 +255,18 @@ export const CreateProductForm = withRouter((props)  => {
 									</Button>
 								</Level.Item>
 								<Level.Item>
-									<Button type="button">
+									<Button type="button" onMouseDown={e => onBlockClick(e,'block-quote')}>
                     <icon className="fas fa-quote-right" />
 									</Button>
 								</Level.Item>
 								<Level.Item>
-									<Button type="button">
+									<Button type="button" onMouseDown={e => onBlockClick(e,'heading-two')}>
                     <icon className="fas fa-heading" />
+									</Button>
+								</Level.Item>
+								<Level.Item>
+									<Button type="button" onMouseDown={e => onBlockClick(e,'list-item')}>
+                    <icon className="fas fa-list-ul" />
 									</Button>
 								</Level.Item>
 								<Level.Item>
@@ -269,12 +274,15 @@ export const CreateProductForm = withRouter((props)  => {
 							</Level>
 						</Card.Header>
 						<Card.Content>
-							<Editor 
-								value={data.body}
-								onChange={v => data.setBody(v.value)}
-								ref={e => editor=e} 
-								renderMark={renderMark}
-							/>
+              <Content>
+                <Editor 
+                  value={data.body}
+                  onChange={v => data.setBody(v.value)}
+                  ref={e => editor=e} 
+                  renderMark={renderMark}
+                  renderBlock={renderBlock}
+                />
+              </Content>
 						</Card.Content>
 					</Card>
 				</Form.Control>
