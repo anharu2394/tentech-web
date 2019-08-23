@@ -12,6 +12,7 @@ import { useCurrentUser } from "./containers/CurrentUser"
 import { useProduct } from "./containers/Product"
 import { createContainer } from "unstated-next"
 import history from './history'
+import styled from 'styled-components'
 
 export let CurrentUser = createContainer(useCurrentUser)
 export let Product = createContainer(useProduct)
@@ -19,7 +20,7 @@ export let Product = createContainer(useProduct)
 function App() {
   return (
     <Router>
-      <div>
+      <Wrapper>
         <CurrentUser.Provider>
           <Product.Provider>
             <Header />
@@ -27,11 +28,15 @@ function App() {
             <Route path="/signin" exact component={Signin} />
             <Route path="/login" exact component={Login} />
             <Route path="/:user/products/:uuid" exact component={ProductComponent } />
+						<Footer />
           </Product.Provider>
         </CurrentUser.Provider>
-      </div>
+      </Wrapper>
     </Router>
   )
 }
 
+const Wrapper = styled.div`
+	background: #ECF0F3;
+`
 export default App
