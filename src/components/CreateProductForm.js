@@ -34,23 +34,47 @@ export const CreateProductForm = withRouter((props)  => {
         history.push("/a/products/" + r.product.uuid)      
       })
     }}>
-      <label>タイトル</label>
-      <input type="text" value={data.title} onChange={e => data.setTitle(e.target.value)} /> <br />
-      <label>画像</label>
-      <input type="text" value={data.img} onChange={e => data.setImg(e.target.value)} /> <br />
-      <label>説明</label>
-      <input type="text" value={data.body} onChange={e => data.setBody(e.target.value)} /> <br />
-      <label>種類</label>
-      <select value={data.kind} onChange={e => data.setKind(e.target.value)} >
-        <option value="WebApp">Webアプリ</option>
-        <option value="MobileApp">モバイルアプリ</option>
-        <option value="DesktopApp">デスクトップアプリ</option>
-        <option value="Package">ライブラリ・パッケージ</option>
-        <option value="Others">その他</option>
-      </select><br />
-      <label>かかった時間</label>
-      <input type="number" value={data.duration} onChange={e => data.setDuration(e.target.value)} /> <br />
-      <button type="submit">投稿</button>
+			<Form.Field>
+				<Form.Label>タイトル</Form.Label>
+				<Form.Control>
+					<Form.Input type="text" value={data.title} onChange={e => data.setTitle(e.target.value)} /> <br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+					<Form.Label>画像</Form.Label>
+					<Form.Input type="text" value={data.img} onChange={e => data.setImg(e.target.value)} /> <br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+      <Form.Label>説明</Form.Label>
+      <Form.Input nput type="text" value={data.body} onChange={e => data.setBody(e.target.value)} /> <br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+					<Form.Label>種類</Form.Label>
+					<Form.Select value={data.kind} onChange={e => data.setKind(e.target.value)} >
+						<option value="WebApp">Webアプリ</option>
+						<option value="MobileApp">モバイルアプリ</option>
+						<option value="DesktopApp">デスクトップアプリ</option>
+						<option value="Package">ライブラリ・パッケージ</option>
+						<option value="Others">その他</option>
+					</Form.Select><br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+					<Form.Label>かかった時間</Form.Label>
+					<Form.Input type="number" value={data.duration} onChange={e => data.setDuration(e.target.value)} /> <br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+      		<Button type="submit">投稿</Button>
+				</Form.Control>
+      </Form.Field>
     </form>
   );
 })
