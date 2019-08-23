@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { endpoint } from "../utils"
 
 export function useProduct() {
+	let [ product, setProduct ] = useState({})
+	let [ author, setAuthor ] = useState({})
   let createProduct = (product,token) => {
     const data = { "product": product }
     return fetch(endpoint("/products"),{
