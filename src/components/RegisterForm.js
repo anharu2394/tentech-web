@@ -19,7 +19,11 @@ export function RegisterForm(props) {
   }
   console.log(props)
   return (
-    <form onSubmit={() => props.createUser(user)}>
+    <form onSubmit={e => {
+        e.preventDefault()
+        props.createUser(user)
+    }
+    }>
       <label>ユーザーネーム</label>
       <input type="text" value={data.username} onChange={e => data.setUsername(e.target.value)} /> <br />
       <label>ニックネーム</label>
