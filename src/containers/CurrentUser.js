@@ -35,12 +35,18 @@ export function useCurrentUser() {
         },
         body: JSON.stringify(data)
     })
+    .catch(e => console.log(e.message))
     .then(res => {
+      console.log(res)
       if (res.ok) {
-        let token = res.json().token
-        setToken(token)
-        setLoggedIn(true)
+        return res.json()
       }
+      throw Error()
+    })
+    .then(json => {
+      setToken(json.token)
+      setLoggedIn(true)
+      console.log(token)
     })
   }
   return { user, loggedIn, token, createUser, loginUser }
