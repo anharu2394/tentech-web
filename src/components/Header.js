@@ -4,6 +4,9 @@ import { Navbar, Button } from 'react-bulma-components'
 
 export function Header() {
   let currentUser = CurrentUser.useContainer()
+  useEffect(() => {
+    currentUser.validUser()
+  },[])
   return (
     <Navbar
     >
