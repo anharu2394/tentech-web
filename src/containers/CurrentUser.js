@@ -52,9 +52,38 @@ export function useCurrentUser() {
       setToken(json.token)
       setUser(json.user)
       setLoggedIn(true)
-      console.log(token)
+      localStorage.setItem("token", json.token)
     })
   }
-  return { user, loggedIn, token, createUser, loginUser }
+  let validUser = async () => {
+    const token = localStorage.getItem('token')
+    if (token === null || token === "") {
+      reset()
+    }
+    fetch(endpoint("/users/validate"), {
+        mode: "cors",
+        headers: {
+          "x-api-key": token
+        },
+    })
+    .catch(e => {
+      console.log(e)
+      reset()
+    })
+    .then(res => {
+      console.log(res)
+      if (res.ok) {
+        return res.json()
+      }
+      throw Error()
+      reset()
+    })
+    .then(json => {
+      setToken(token)
+      setUser(json.user)
+      setLoggedIn(true)
+    })
+  }
+  return { user, loggedIn, token, createUser, loginUser, validUser}
 }
 
