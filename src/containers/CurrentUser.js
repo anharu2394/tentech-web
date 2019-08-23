@@ -45,6 +45,7 @@ export function useCurrentUser() {
     })
     .then(json => {
       setToken(json.token)
+      setUser(json.user)
       setLoggedIn(true)
       console.log(token)
     })
