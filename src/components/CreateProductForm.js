@@ -16,6 +16,7 @@ function useProductForm() {
 export const CreateProductForm = withRouter((props)  => {
   let data = useProductForm()
   console.log(props)
+  const { history, location, match } = useReactRouter()
   let req_data = {
     title: data.title,
     body: data.body,
