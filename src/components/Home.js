@@ -21,8 +21,9 @@ export function Home(props) {
           </Container>
         </Hero.Body>
       </Hero>
-
+			<Container>
       <CreateProductForm createProduct={product.createProduct} token={user.token} history={props.history} />
+			</Container>
     </div>
   )
 }
