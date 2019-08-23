@@ -1,6 +1,7 @@
 import React from 'react'
 import { Home } from './components/Home'
 import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 import { Signin } from './components/Signin'
 import { Login } from './components/Login'
 import { Product as ProductComponent } from './components/Product'
