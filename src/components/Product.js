@@ -33,11 +33,12 @@ export function Product(props) {
 									<Media.Item>
 										<Content>
 											<p>
-												<strong>{author.nickname}</strong> <small>@johnsmith</small>
+												<strong>{author.nickname}</strong> <small>@{author.username}</small>
 											</p>
 										</Content>
 									</Media.Item>
 								</Media>
+                <div dangerouslySetInnerHTML={{ __html: product.body }} />
 							</Card.Content>
 						</StyledCard>
         </Columns.Column>
