@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { loginUser } from "../requests"
 import { withRouter } from 'react-router-dom'
 import useReactRouter from 'use-react-router'
-import { Form, Button} from 'react-bulma-components'
+import { Form, Button, Card, Icon, Level} from 'react-bulma-components'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 
