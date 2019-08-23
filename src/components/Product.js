@@ -23,7 +23,7 @@ export function Product(props) {
 				<Columns.Column size={9}>
 						<StyledCard>
 							<Card.Header>
-								<Card.Header.Title>{product.title}</Card.Header.Title>
+								<Card.Header.Title><Heading size={4}>{product.title}</Heading></Card.Header.Title>
 							</Card.Header>
 							<Card.Content>
 								<Media>
