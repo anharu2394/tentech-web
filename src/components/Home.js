@@ -21,7 +21,8 @@ export function Home() {
           </Container>
         </Hero.Body>
       </Hero>
-      This is Home!
+
+      <CreateProductForm createProduct={product.createProduct} token={user.token} />
     </div>
   )
 }
