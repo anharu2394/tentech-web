@@ -18,5 +18,17 @@ export function useProduct() {
     .then(r => r.json())
     .catch(e => console.log(e))
   } 
-  return {createProduct}
+	let fetchProduct = (uuid) => {
+    return fetch(endpoint("/products/" + uuid),{
+      mode: "cors",
+    })
+    .then(r => r.json())
+		.then(j => {
+			setProduct(j.product)
+			setAuthor(j.author)
+		})
+    .catch(e => console.log(e))
+  } 
+	
+  return {createProduct, fetchProduct, product, author}
 }
