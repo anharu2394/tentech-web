@@ -2,9 +2,90 @@ import React, { useState, useEffect } from "react"
 import { loginUser } from "../requests"
 import { withRouter } from 'react-router-dom'
 import useReactRouter from 'use-react-router'
-import { Form, Button, Card, Icon, Level} from 'react-bulma-components'
+import { Form, Button, Card, Icon, Level, Content} from 'react-bulma-components'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
+import Html from 'slate-html-serializer'
+const BLOCK_TAGS = {
+  blockquote: 'quote',
+  p: 'paragraph',
+  pre: 'code',
+}
+
+// Add a dictionary of mark tags.
+const MARK_TAGS = {
+  em: 'italic',
+  strong: 'bold',
+  u: 'underline',
+}
+
+const rules = [
+  {
+    deserialize(el, next) {
+      const type = BLOCK_TAGS[el.tagName.toLowerCase()]
+      if (type) {
+        return {
+          object: 'block',
+          type: type,
+          data: {
+            className: el.getAttribute('class'),
+          },
+          nodes: next(el.childNodes),
+        }
+      }
+    },
+    serialize(obj, children) {
+      if (obj.object == 'block') {
+        switch (obj.type) {
+          case 'code':
+            return (
+              <pre>
+                <code>{children}</code>
+              </pre>
+            )
+          case 'paragraph':
+            return <p className={obj.data.get('className')}>{children}</p>
+          case 'block-quote':
+            return <blockquote>{children}</blockquote>
+          case 'heading-two':
+            return <h2>{children}</h2>
+          case 'numbered-list':
+            return <ol>{children}</ol>
+          case 'bulleted-list':
+             return <ul>{children}</ul>
+          case 'list-item':
+            return <li>{children}</li>
+        }
+      }
+    },
+  },
+  // Add a new rule that handles marks...
+  {
+    deserialize(el, next) {
+      const type = MARK_TAGS[el.tagName.toLowerCase()]
+      if (type) {
+        return {
+          object: 'mark',
+          type: type,
+          nodes: next(el.childNodes),
+        }
+      }
+    },
+    serialize(obj, children) {
+      if (obj.object == 'mark') {
+        switch (obj.type) {
+          case 'bold':
+            return <strong>{children}</strong>
+          case 'italic':
+            return <em>{children}</em>
+          case 'underlined':
+            return <u>{children}</u>
+        }
+      }
+    },
+  },
+]
+const html = new Html({ rules })
 
 const initialValue = Value.fromJSON({
   document: {
