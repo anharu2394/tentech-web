@@ -2,15 +2,20 @@ import React, { useEffect} from "react"
 import { CurrentUser, UserPage } from "../App"
 import { Box, Button, Image, Container, Columns, Heading, Level } from 'react-bulma-components'
 import styled from 'styled-components'
+import { ProductList } from "./ProductList"
 
 export function User(props) {
   let currentUser = CurrentUser.useContainer()
   let userContainer = UserPage.useContainer()
-  const { user } = userContainer
+  const { user, products } = userContainer
   console.log(user)
   const style = { textAlign: 'center'}
   useEffect(() => {
     userContainer.fetchUser(props.match.params.user)
+      .then(u => {
+        console.log(u)
+        userContainer.fetchProductsByUser(u.id)
+      })
   },[])
   return (
     <Container>
