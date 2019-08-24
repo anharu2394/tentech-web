@@ -28,9 +28,13 @@ export function Header() {
           <Navbar.Item href="#">Second</Navbar.Item>
         </Navbar.Container>
         <Navbar.Container position="end">
-          <Navbar.Item href="#">At the end</Navbar.Item>
+          <Avatar size={64} src="/default_avater.png"/>
         </Navbar.Container>
       </Navbar.Menu>
     </Navbar>
   )
 }
+
+const Avatar = styled(Image)`
+  padding: 3px;
+`
