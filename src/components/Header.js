@@ -25,7 +25,7 @@ export function Header() {
       </Navbar.Brand>
       <Navbar.Menu >
         <Navbar.Container>
-          <Navbar.Item href="#">Second</Navbar.Item>
+          <Navbar.Item href="#">みんなの投稿</Navbar.Item>
         </Navbar.Container>
         <Navbar.Container position="end">
           <Avatar size={64} src="/default_avater.png"/>
