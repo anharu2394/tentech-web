@@ -1,6 +1,7 @@
 import React, { useEffect} from "react"
 import { CurrentUser } from "../App"
-import { Navbar, Button } from 'react-bulma-components'
+import { Navbar, Button, Image } from 'react-bulma-components'
+import styled from 'styled-components'
 
 export function Header() {
   let currentUser = CurrentUser.useContainer()
