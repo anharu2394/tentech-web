@@ -16,7 +16,7 @@ export function Home(props) {
               Webアプリ、モバイルアプリ、ライブラリ、なんでも投稿OK
             </Heading>
             <Heading subtitle size={4}>
-              どんなに小さいプロジェクトでもまずは投稿するのが第一歩
+              どんなに小さいプロジェクトでも投稿するのが第一歩
             </Heading>
           </Container>
         </Hero.Body>
