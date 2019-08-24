@@ -110,8 +110,9 @@ function useProductForm() {
   let [duration, setDuration] = useState(0)
   let [img, setImg] = useState("")
   let [kind, setKind] = useState("WebApp")
+  let [status, setStatus] = useState("Completed")
   let [tags, setTags] = useState([])
-  return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags}
+  return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags, status, setStatus}
 }
 
 export const CreateProductForm = withRouter((props)  => {
