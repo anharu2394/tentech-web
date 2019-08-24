@@ -30,7 +30,9 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/signin" exact component={Signin} />
             <Route path="/login" exact component={Login} />
-            <Route path="/:user" exact component={User } />
+            <UserPage.Provider>
+              <Route path="/:user" exact component={User } />
+            </UserPage.Provider>
             <Route path="/:user/products/:uuid" exact component={ProductComponent } />
 						<Footer />
           </Product.Provider>
