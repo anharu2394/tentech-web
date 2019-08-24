@@ -35,7 +35,7 @@ export function User(props) {
               <Level.Item style={style}>
               <div>
                 <Heading renderAs="p" heading>
-                    Likes
+                    Reactions
                   </Heading>
                   <Heading renderAs="p">321K</Heading>
                 </div>
