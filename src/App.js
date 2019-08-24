@@ -11,12 +11,14 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 import { useCurrentUser } from "./containers/CurrentUser"
 import { useProduct } from "./containers/Product"
+import { useUser } from "./containers/User"
 import { createContainer } from "unstated-next"
 import history from './history'
 import styled from 'styled-components'
 
 export let CurrentUser = createContainer(useCurrentUser)
 export let Product = createContainer(useProduct)
+export let UserPage = createContainer(useUser)
 
 function App() {
   return (
