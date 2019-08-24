@@ -1,29 +1,33 @@
 import React, { useEffect} from "react"
-import { CurrentUser } from "../App"
+import { CurrentUser, UserPage } from "../App"
 import { Box, Button, Image, Container, Columns, Heading, Level } from 'react-bulma-components'
 import styled from 'styled-components'
 
-export function User() {
+export function User(props) {
   let currentUser = CurrentUser.useContainer()
+  let userContainer = UserPage.useContainer()
+  const { user } = userContainer
+  console.log(user)
   const style = { textAlign: 'center'}
   useEffect(() => {
-    currentUser.validUser()
+    userContainer.fetchUser(props.match.params.user)
   },[])
   return (
     <Container>
 			<Columns>
 				<Columns.Column size={4}>
           <Avatar src="/default_avater.png" />
-          <Heading>anharu</Heading> 
-          <Heading subtitle><small>@anharu</small></Heading>
+          <Heading>{user.nickname}</Heading> 
+          <Heading subtitle><small>@{user.username}</small></Heading>
+          <p>よろしく</p>
         </Columns.Column>
 				<Columns.Column>
-          <Box style={{"margin-top": 10}}>
+          <Box style={{"marginTop": 10}}>
             <Level renderAs="nav">
               <Level.Item style={style}>
               <div>
                 <Heading renderAs="p" heading>
-                    Tweets
+                    Projects
                   </Heading>
                   <Heading renderAs="p">3,210</Heading>
                 </div>
