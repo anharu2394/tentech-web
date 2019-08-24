@@ -109,7 +109,7 @@ function useProductForm() {
   let [body, setBody] = useState(initialValue)
   let [duration, setDuration] = useState(0)
   let [img, setImg] = useState("")
-  let [kind, setKind] = useState("")
+  let [kind, setKind] = useState("WebApp")
   let [tags, setTags] = useState([])
   return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags}
 }
