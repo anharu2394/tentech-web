@@ -3,6 +3,7 @@ import { CurrentUser, Product as ProductContainer } from "../App"
 import { Container, Columns, Card, Media, Content, Image, Heading } from 'react-bulma-components'
 import styled from 'styled-components'
 import useReactRouter from 'use-react-router'
+import dompurify from 'dompurify'
 
 export function Product(props) {
   let currentUser = CurrentUser.useContainer()
@@ -10,6 +11,7 @@ export function Product(props) {
 	const { product, author } = productContainer
   const { history, location, match } = useReactRouter()
 	console.log(history)
+  const sanitizer = dompurify.sanitize
 	useEffect(() => {
 		productContainer.fetchProduct(props.match.params.uuid)
 			.then(j => {
@@ -38,7 +40,7 @@ export function Product(props) {
 										</Content>
 									</Media.Item>
 								</Media>
-                <div dangerouslySetInnerHTML={{ __html: product.body }} />
+                <div dangerouslySetInnerHTML={{ __html: sanitizer(product.body) }} />
 							</Card.Content>
 						</StyledCard>
         </Columns.Column>
