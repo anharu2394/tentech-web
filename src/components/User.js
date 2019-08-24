@@ -47,6 +47,7 @@ export function User(props) {
               </Level.Item>
             </Level>
           </Box>
+          <ProductList products={products} />
         </Columns.Column>
       </Columns>
     </Container>
