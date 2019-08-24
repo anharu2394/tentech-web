@@ -299,12 +299,29 @@ export const CreateProductForm = withRouter((props)  => {
 					</Form.Select><br />
 				</Form.Control>
       </Form.Field>
+      <Form.Field>
+        <Form.Control>
+					<Form.Label>ステータス</Form.Label>
+          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'New'} value="New">
+            構想段階
+          </Form.Radio>
+          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'InProgress'} value="InProgress">
+            開発中
+          </Form.Radio>
+          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'Completed'} value="Completed">
+            完成
+          </Form.Radio>
+        </Form.Control>
+      </Form.Field>
+      { data.status == "Completed" ? (
 			<Form.Field>
 				<Form.Control>
 					<Form.Label>かかった時間</Form.Label>
 					<Form.Input type="number" value={data.duration} onChange={e => data.setDuration(e.target.value)} /> <br />
 				</Form.Control>
       </Form.Field>
+      ):null
+      }
 			<Form.Field>
 				<Form.Control>
       		<Button type="submit">投稿</Button>
