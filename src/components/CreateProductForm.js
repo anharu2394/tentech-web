@@ -7,7 +7,7 @@ import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
 const BLOCK_TAGS = {
-  blockquote: 'quote',
+  blockquote: 'block-quote',
   p: 'paragraph',
   pre: 'code',
 }
