@@ -231,6 +231,9 @@ export const CreateProductForm = withRouter((props)  => {
   return (
     <form onSubmit={e => {
       e.preventDefault()
+      if (props.editProduct) {
+        req_data.uuid = props.editProduct.uuid
+      }  
       props.createProduct(req_data,props.token).then(r => {
         console.log(r)
         history.push("/a/products/" + r.product.uuid)      
