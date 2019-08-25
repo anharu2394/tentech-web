@@ -14,14 +14,16 @@ export function ProductList(props) {
       {
         props.products.map(p => (
           <Columns.Column size={4}>
-            <Card key={p.id}>
-              <Card.Image size="4by3" src="http://bulma.io/images/placeholders/1280x960.png" />
-              <Card.Content>
-                <Content>
-                  <Heading>{p.title}</Heading>
-                </Content>
-              </Card.Content>
-            </Card>
+            <Link to={"/a/products/" + p.uuid} >
+              <Card key={p.id}>
+                <Card.Image size="4by3" src="http://bulma.io/images/placeholders/1280x960.png" />
+                <Card.Content>
+                  <Content>
+                    <Heading>{p.title}</Heading>
+                  </Content>
+                </Card.Content>
+              </Card>
+            </Link>
           </Columns.Column>
         ))
       } 
