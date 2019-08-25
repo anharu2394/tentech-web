@@ -20,8 +20,8 @@ export function useProduct() {
     .catch(e => console.log(e))
   } 
   let recreateProduct = (product,token) => {
-    const data = { "product": product }
-    return fetch(endpoint("/products"),{
+    const data = product
+    return fetch(endpoint("/products/" + product.uuid),{
       method: "PATCH",
       mode: "cors",
       headers: {

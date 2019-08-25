@@ -31,6 +31,7 @@ export function useUser() {
       setUser(j.user)
       return j.user
     })
+    .catch(e => console.log(e))
   } 
   let fetchProductsByUser = async (user_id) => {
     return fetch(endpoint("/users/" + user_id + "/products"), {
