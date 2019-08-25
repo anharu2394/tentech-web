@@ -219,6 +219,8 @@ export const CreateProductForm = withRouter((props)  => {
     if ( props.editProduct) {
       const p = props.editProduct
       data.setTitle(p.title)
+      data.setBody(html.deserialize(p.body))
+      data.setImg(p.img)
       data.setDuration(p.duration)
       data.setKind(p.kind)
       data.setStatus(p.status)
