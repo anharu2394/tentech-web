@@ -211,8 +211,21 @@ export const CreateProductForm = withRouter((props)  => {
     img: data.img,
     duration: Number(data.duration),
     kind: data.kind,
+    status: data.status,
     tags: data.tags
   }
+    console.log(props)
+  useEffect(()=> {
+    if ( props.editProduct) {
+      const p = props.editProduct
+      data.setTitle(p.title)
+      data.setDuration(p.duration)
+      data.setKind(p.kind)
+      data.setStatus(p.status)
+
+      console.log("dd")
+    }
+  },[props.editProduct])
   return (
     <form onSubmit={e => {
       e.preventDefault()
