@@ -1,13 +1,15 @@
-import React, { useEffect} from "react"
+import React, { useState, useEffect} from "react"
 import { CurrentUser, Product as ProductContainer } from "../App"
-import { Container, Columns, Card, Media, Content, Image, Heading } from 'react-bulma-components'
+import { Container, Columns, Card, Media, Content, Image, Heading, Button } from 'react-bulma-components'
 import styled from 'styled-components'
 import useReactRouter from 'use-react-router'
 import dompurify from 'dompurify'
+import { Link } from "react-router-dom"
 
 export function Product(props) {
   let currentUser = CurrentUser.useContainer()
   let productContainer = ProductContainer.useContainer()
+  let [notfound, setNotfound] = useState(false) 
 	const { product, author } = productContainer
   const { history, location, match } = useReactRouter()
 	console.log(history)
