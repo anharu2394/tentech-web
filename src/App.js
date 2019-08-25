@@ -5,6 +5,7 @@ import { Footer } from './components/Footer'
 import { Signin } from './components/Signin'
 import { Login } from './components/Login'
 import { User } from './components/User'
+import { EditProduct } from './components/EditProduct'
 import { Product as ProductComponent } from './components/Product'
 import logo from './logo.svg'
 import 'react-bulma-components/dist/react-bulma-components.min.css';
