@@ -46,7 +46,7 @@ export function useCurrentUser() {
       if (res.ok) {
         return res.json()
       }
-      throw Error()
+      throw Error(res.statusText)
     })
     .then(json => {
       setToken(json.token)
@@ -66,22 +66,22 @@ export function useCurrentUser() {
           "x-api-key": token
         },
     })
-    .catch(e => {
-      console.log(e)
-      reset()
-    })
     .then(res => {
       console.log(res)
       if (res.ok) {
         return res.json()
       }
-      throw Error()
+      throw Error(res.statusText)
       reset()
     })
     .then(json => {
       setToken(token)
       setUser(json.user)
       setLoggedIn(true)
+    })
+    .catch(e => {
+      console.log(e)
+      reset()
     })
   }
   return { user, loggedIn, token, createUser, loginUser, validUser}
