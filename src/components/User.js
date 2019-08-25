@@ -16,6 +16,7 @@ export function User(props) {
         console.log(u)
         userContainer.fetchProductsByUser(u.id)
       })
+      .catch(e => console.log(e))
   },[])
   return (
     <Container>
