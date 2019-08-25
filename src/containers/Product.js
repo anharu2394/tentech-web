@@ -3,6 +3,7 @@ import { endpoint } from "../utils"
 
 export function useProduct() {
 	let [ product, setProduct ] = useState({title:"", body:""})
+	let [ editProduct, setEditProduct ] = useState({title:"", body:""})
 	let [ author, setAuthor ] = useState({nickname:"",username:""})
   let createProduct = (product,token) => {
     const data = { "product": product }
