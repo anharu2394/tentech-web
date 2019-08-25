@@ -34,6 +34,7 @@ function App() {
             <UserPage.Provider>
               <Route path="/:user" exact component={User } />
             </UserPage.Provider>
+            <Route path="/:user/products/:uuid/edit" exact component={EditProduct } />
             <Route path="/:user/products/:uuid" exact component={ProductComponent } />
 						<Footer />
           </Product.Provider>
