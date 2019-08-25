@@ -28,15 +28,17 @@ function App() {
         <CurrentUser.Provider>
           <Product.Provider>
             <Header />
-            <Route path="/" exact component={Home} />
-            <Route path="/signin" exact component={Signin} />
-            <Route path="/login" exact component={Login} />
-            <UserPage.Provider>
-              <Route path="/:user" exact component={User } />
-            </UserPage.Provider>
-            <Route path="/:user/products/:uuid/edit" exact component={EditProduct } />
-            <Route path="/:user/products/:uuid" exact component={ProductComponent } />
-						<Footer />
+            <Switch>
+              <Route path="/:user/products/:uuid" exact component={ProductComponent } />
+              <Route path="/" exact component={Home} />
+              <Route path="/signin" exact component={Signin} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/:user/products/:uuid/edit" exact component={EditProduct } />
+              <UserPage.Provider>
+                <Route path="/:user" exact component={User } />
+              </UserPage.Provider>
+            </Switch>
+            <Footer />
           </Product.Provider>
         </CurrentUser.Provider>
       </Wrapper>
