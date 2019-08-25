@@ -19,8 +19,14 @@ export function Product(props) {
 			.then(j => {
 				history.push("/" +j.user.username + "/products/" + props.match.params.uuid)
 				})
-			.catch(e => console.log(e))
+			.catch(e => {
+        console.log(e)
+        setNotfound(true)
+      })
 	},[])
+  if (notfound) {
+    return(<div>Not Found</div>)
+  }
   return (
 		<Container>
 			<Columns>
