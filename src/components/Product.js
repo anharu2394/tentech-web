@@ -12,7 +12,6 @@ export function Product(props) {
   let [notfound, setNotfound] = useState(false) 
 	const { product, author } = productContainer
   const { history, location, match } = useReactRouter()
-	console.log(history)
   const sanitizer = dompurify.sanitize
 	useEffect(() => {
 		productContainer.fetchProduct(props.match.params.uuid)
