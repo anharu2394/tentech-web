@@ -2,6 +2,7 @@ import React, { useEffect} from "react"
 import { CurrentUser } from "../App"
 import { Navbar, Button, Image, Card, Content, Media, Heading, Columns } from 'react-bulma-components'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
 
 export function ProductList(props) {
   let currentUser = CurrentUser.useContainer()
