@@ -35,7 +35,7 @@ export function User(props) {
                 <Heading renderAs="p" heading>
                     Projects
                   </Heading>
-                  <Heading renderAs="p">3,210</Heading>
+                  <Heading renderAs="p">{products.length}</Heading>
                 </div>
               </Level.Item>
               <Level.Item style={style}>
