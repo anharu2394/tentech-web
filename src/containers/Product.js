@@ -45,5 +45,15 @@ export function useProduct() {
 		})
   } 
 	
-  return {createProduct, fetchProduct, product, author}
+	let fetchEditProduct = (uuid) => {
+    return fetch(endpoint("/products/" + uuid),{
+      mode: "cors",
+    })
+    .then(r => r.json())
+		.then(j => {
+			setEditProduct(j.product)
+			return j
+		})
+  } 
+  return {createProduct, recreateProduct, fetchProduct, fetchEditProduct, product, author, editProduct}
 }
