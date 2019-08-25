@@ -48,12 +48,14 @@ export function Product(props) {
 									</Media.Item>
                   { currentUser.user.id == author.id ? (
 									<Media.Item renderAs="figure" position="right">
-                    <Link><Button>編集する</Button></Link>
+                    <Link to={location.pathname + "/edit"}><Button>編集する</Button></Link>
 									</Media.Item>
                   ):null
                   }
 								</Media>
-                <div dangerouslySetInnerHTML={{ __html: sanitizer(product.body) }} />
+								<Content>
+                  <div dangerouslySetInnerHTML={{ __html: sanitizer(product.body) }} />
+								</Content>
 							</Card.Content>
 						</StyledCard>
         </Columns.Column>
