@@ -5,6 +5,7 @@ import { Footer } from './components/Footer'
 import { Signin } from './components/Signin'
 import { Login } from './components/Login'
 import { User } from './components/User'
+import { EditUser } from './components/EditUser'
 import { EditProduct } from './components/EditProduct'
 import { Product as ProductComponent } from './components/Product'
 import logo from './logo.svg'
@@ -13,6 +14,8 @@ import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-ro
 import { useCurrentUser } from "./containers/CurrentUser"
 import { useProduct } from "./containers/Product"
 import { useUser } from "./containers/User"
+import { usePostAttach } from "./containers/PostAttach"
+import { useTagList } from "./containers/TagList"
 import { createContainer } from "unstated-next"
 import history from './history'
 import styled from 'styled-components'
@@ -20,6 +23,8 @@ import styled from 'styled-components'
 export let CurrentUser = createContainer(useCurrentUser)
 export let Product = createContainer(useProduct)
 export let UserPage = createContainer(useUser)
+export let PostAttach = createContainer(usePostAttach)
+export let TagList = createContainer(useTagList)
 
 function App() {
   return (
