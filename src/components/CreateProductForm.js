@@ -446,6 +446,26 @@ export const CreateProductForm = withRouter((props)  => {
       }
 			<Form.Field>
 				<Form.Control>
+					<Form.Label>使用した言語</Form.Label>
+          <Select
+        		value={data.selectedLang}
+        		onChange={e => data.setSelectedLang(e)}
+        		options={TagListContainer.tags.filter(t => t.kind == "lang")}
+      		/>
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
+					<Form.Label>使用したフレームワーク</Form.Label>
+          <Select
+        		value={data.selectedFrame}
+        		onChange={e => data.setSelectedFrame(e)}
+        		options={TagListContainer.tags.filter(t => t.kind == "fw")}
+      		/>
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
+				<Form.Control>
       		<Button type="submit">投稿</Button>
 				</Form.Control>
       </Form.Field>
