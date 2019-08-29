@@ -6,10 +6,32 @@ import { Form, Button, Card, Icon, Level, Content} from 'react-bulma-components'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
+import InsertImages from 'slate-drop-or-paste-images'
+import { PreviewImg } from "./PreviewImg"
+import { PostAttach, TagList } from "../App"
+import ImageUploader from 'react-images-upload'
+import Select from 'react-select'
+
+
+const plugins = [
+  InsertImages({
+    extensions: ['png', 'jpg','jpeg','svg'],
+    insertImage: (change, file) => {
+      console.log(change)
+      return change.insertBlock({
+        type: 'image',
+        isVoid: true,
+        data: { file }
+      })
+    }
+  })
+]
+
 const BLOCK_TAGS = {
   blockquote: 'block-quote',
   p: 'paragraph',
   pre: 'code',
+  img: 'image',
 }
 
 // Add a dictionary of mark tags.
@@ -29,6 +51,7 @@ const rules = [
           type: type,
           data: {
             className: el.getAttribute('class'),
+            url: el.getAttribute("src")
           },
           nodes: next(el.childNodes),
         }
@@ -55,6 +78,12 @@ const rules = [
              return <ul>{children}</ul>
           case 'list-item':
             return <li>{children}</li>
+          case "image": {
+              console.log(obj)
+            return (
+              <img src={obj.data.get("url")} />
+          )
+    }
         }
       }
     },
@@ -74,6 +103,8 @@ const rules = [
     serialize(obj, children) {
       if (obj.object == 'mark') {
         switch (obj.type) {
+          case 'code':
+            return <strong>{children}</strong>
           case 'bold':
             return <strong>{children}</strong>
           case 'italic':
@@ -109,14 +140,19 @@ function useProductForm() {
   let [body, setBody] = useState(initialValue)
   let [duration, setDuration] = useState(0)
   let [img, setImg] = useState("")
+  let [simple, setSimple] = useState("")
   let [kind, setKind] = useState("WebApp")
   let [status, setStatus] = useState("Completed")
   let [tags, setTags] = useState([])
-  return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags, status, setStatus}
+  let [selectedLang, setSelectedLang] = useState({})
+  let [selectedFrame, setSelectedFrame] = useState([])
+  return {title, setTitle, body, setBody, duration, setDuration, img, setImg, kind, setKind, tags, setTags, status, setStatus, simple, setSimple, selectedLang, setSelectedLang, selectedFrame, setSelectedFrame}
 }
 
 export const CreateProductForm = withRouter((props)  => {
 	let editor
+  const PostAttachContainer = PostAttach.useContainer()
+  const TagListContainer = TagList.useContainer()
   const DEFAULT_NODE = 'paragraph'
 	const onMarkClick = (e, type) => {
 		e.preventDefault()
@@ -199,35 +235,83 @@ export const CreateProductForm = withRouter((props)  => {
         return <li {...attributes}>{children}</li>
       case 'numbered-list':
         return <ol {...attributes}>{children}</ol>
+      case "image": {
+        return (
+          <PostAttach.Provider>
+            <PreviewImg {...props} editor={editor} />
+          </PostAttach.Provider>
+        )
+    }
+
       default:
         return next()
     }
   }
   let data = useProductForm(initialValue)
   const { history, location, match } = useReactRouter()
-  let req_data = {
+    console.log(props)
+  let req_data
+  useEffect(()=> {
+    TagListContainer.fetchTags()
+    if ( props.editProduct) {
+      const p = props.editProduct
+      data.setTitle(p.title)
+      data.setBody(html.deserialize(p.body))
+      data.setSimple(p.simple)
+      data.setImg(p.img)
+      data.setDuration(p.duration)
+      data.setKind(p.kind)
+      data.setStatus(p.status)
+
+    }
+  },[props.editProduct])
+	useEffect(() => {
+		let tags_id = []
+		const lang_id = data.selectedLang.id
+		if (lang_id) {
+			tags_id.push(lang_id)
+		}
+		const fw_id = data.selectedFrame.id
+		if (fw_id) {
+			tags_id.push(fw_id)
+		}
+
+		data.setTags(tags_id)	
+	},[data.selectedLang, data.selectedFrame])
+  req_data = {
     title: data.title,
     body: html.serialize(data.body),
+    simple: data.simple,
     img: data.img,
     duration: Number(data.duration),
     kind: data.kind,
     status: data.status,
     tags: data.tags
   }
-    console.log(props)
-  useEffect(()=> {
-    if ( props.editProduct) {
-      const p = props.editProduct
-      data.setTitle(p.title)
-      data.setBody(html.deserialize(p.body))
-      data.setImg(p.img)
-      data.setDuration(p.duration)
-      data.setKind(p.kind)
-      data.setStatus(p.status)
-
-      console.log("dd")
+  
+  const onImageDrop = (f) => {
+    const reader = new FileReader()
+    f = f[0]
+    reader.readAsDataURL(f)
+    reader.onload = () => {
+      const base64 = reader.result.replace(/^.*,/, '')
+      const all = "abcdefghijklmnopqrstuvwxyz0123456789"
+      let r = ""
+      for(var i=0; i<20; i++){
+        r += all[Math.floor(Math.random()*all.length)];
+      }
+      const post_data = {
+        "key": r + "." + f.name.split(".")[1],
+        "attachment": base64,
+        "content_type": f.type 
+      }
+      PostAttachContainer.createAttachment(post_data,"").then(j => {
+        data.setImg(j.asset.url)
+        const url = j.asset.url
+      })
     }
-  },[props.editProduct])
+
+  }
   return (
     <form onSubmit={e => {
       e.preventDefault()
