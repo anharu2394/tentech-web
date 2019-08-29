@@ -395,10 +395,14 @@ export const CreateProductForm = withRouter((props)  => {
               <Content>
                 <Editor 
                   value={data.body}
-                  onChange={v => data.setBody(v.value)}
+                  onChange={v => { 
+                    data.setBody(v.value)
+                    console.log("ss")
+                  }}
                   ref={e => editor=e} 
                   renderMark={renderMark}
                   renderBlock={renderBlock}
+                  plugins={plugins}
                 />
               </Content>
 						</Card.Content>
