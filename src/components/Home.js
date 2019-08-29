@@ -1,7 +1,7 @@
 import React, { useEffect} from "react"
 import { Section, Hero, Container, Heading } from 'react-bulma-components'
 import { CreateProductForm } from "./CreateProductForm";
-import { Product, CurrentUser } from "../App"
+import { Product, CurrentUser, PostAttach, TagList } from "../App"
 
 export function Home(props) {
   let product = Product.useContainer()
@@ -22,7 +22,11 @@ export function Home(props) {
         </Hero.Body>
       </Hero>
 			<Container>
-      <CreateProductForm createProduct={product.createProduct} token={user.token} history={props.history} />
+      <PostAttach.Provider>
+        <TagList.Provider>
+          <CreateProductForm createProduct={product.createProduct} token={user.token} history={props.history} />
+        </TagList.Provider>
+      </PostAttach.Provider>
 			</Container>
     </div>
   )

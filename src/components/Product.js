@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react"
 import { CurrentUser, Product as ProductContainer } from "../App"
-import { Container, Columns, Card, Media, Content, Image, Heading, Button } from 'react-bulma-components'
+import { Container, Columns, Card, Media, Content, Image, Heading, Button, Hero, Section } from 'react-bulma-components'
 import styled from 'styled-components'
 import useReactRouter from 'use-react-router'
 import dompurify from 'dompurify'
@@ -32,17 +32,24 @@ export function Product(props) {
 				<Columns.Column size={9}>
 						<StyledCard>
 							<Card.Header>
-								<Card.Header.Title><Heading size={4}>{product.title}</Heading></Card.Header.Title>
+                <Section>
+                  <Heading size={3}>{product.title}</Heading>
+                  <Heading subtitle size={5}>
+                    {product.simple}
+                  </Heading>
+                </Section>
 							</Card.Header>
 							<Card.Content>
 								<Media>
 									<Media.Item renderAs="figure" position="left">
-										<Image renderAs="p" size={64} alt="64x64" src="http://bulma.io/images/placeholders/128x128.png" />
+										<Image renderAs="p" size={64} alt="64x64" src={author.avatar} />
 									</Media.Item>
 									<Media.Item>
 										<Content>
 											<p>
 												<strong>{author.nickname}</strong> <small>@{author.username}</small>
+                        <br />
+                        {author.bio}
 											</p>
 										</Content>
 									</Media.Item>
