@@ -46,6 +46,19 @@ export function ProductList(props) {
   )
 }
 
+const StyledCard = styled(Card)`
+  height:500px;
+`
+const Wrapper = styled.div`
+  width:100%;
+	text-align:center;
+`
+const StyledCardImage = styled.img`
+  height:250px;
+	idth:100%;
+	object-fit: contain;
+	margin:auto;
+`
 const Avatar = styled(Image)`
   padding: 3px;
 `
