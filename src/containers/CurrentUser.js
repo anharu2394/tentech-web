@@ -29,6 +29,22 @@ export function useCurrentUser() {
       }
     })
   } 
+  let editUser = async (user, id) => {
+    let data = { "user": user }
+    fetch(endpoint("/users/" + id), {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(data)
+    }
+    )
+    .then(res => {
+      if (res.ok) {
+      }
+    })
+  } 
   let loginUser = async (email, password) => {
     let data = { email, password }
     console.log(data)
