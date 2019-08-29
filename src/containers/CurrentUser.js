@@ -91,6 +91,7 @@ export function useCurrentUser() {
       reset()
     })
     .then(json => {
+      console.log(json)
       setToken(token)
       setUser(json.user)
       setLoggedIn(true)
@@ -100,6 +101,6 @@ export function useCurrentUser() {
       reset()
     })
   }
-  return { user, loggedIn, token, createUser, loginUser, validUser}
+  return { user, loggedIn, token, createUser, loginUser, validUser, editUser}
 }
 
