@@ -330,9 +330,25 @@ export const CreateProductForm = withRouter((props)  => {
 				</Form.Control>
       </Form.Field>
 			<Form.Field>
+				<Form.Label>簡単な説明</Form.Label>
+				<Form.Control>
+					<Form.Input type="text" value={data.simple} onChange={e => data.setSimple(e.target.value)} /> <br />
+				</Form.Control>
+      </Form.Field>
+			<Form.Field>
 				<Form.Control>
 					<Form.Label>画像</Form.Label>
 					<Form.Input type="text" value={data.img} onChange={e => data.setImg(e.target.value)} /> <br />
+          <ImageUploader
+                  className="file"
+                	withIcon={true}
+                	withPreview={true}
+                	buttonText='画像を選ぶ'
+                  label="画面やロゴマークを登録してね"
+                	onChange={onImageDrop}
+                	imgExtension={['.jpg', '.gif', '.png', '.svg']}
+                	maxFileSize={5242880}
+            />
 				</Form.Control>
       </Form.Field>
 			<Form.Field>
