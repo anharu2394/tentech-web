@@ -11,7 +11,6 @@ export function EditUser(props) {
   useEffect(() => {
     userContainer.fetchUser(props.match.params.user)
       .then(u => {
-        console.log(u)
         userContainer.fetchProductsByUser(u.id)
       })
       .catch(e => console.log(e))

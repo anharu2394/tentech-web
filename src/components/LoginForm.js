@@ -11,7 +11,6 @@ function useLoginForm() {
 
 export function LoginForm(props) {
   let data = useLoginForm()
-  console.log(props)
   return (
     <form onSubmit={e => {
       e.preventDefault()

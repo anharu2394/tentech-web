@@ -16,7 +16,6 @@ export function Product(props) {
   const sanitizer = dompurify.sanitize
 	const lang = TagListContainer.tags.filter( t => product.tags.find(i => i === t.id)).find(t => t.kind == "lang") || {}
 	const fw = TagListContainer.tags.filter( t => product.tags.find(i => i === t.id)).find(t => t.kind == "fw") || {}
-	console.log(product.tags)
 	useEffect(() => {
 		TagListContainer.fetchTags()
 		productContainer.fetchProduct(props.match.params.uuid)

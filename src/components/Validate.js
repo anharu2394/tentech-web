@@ -8,7 +8,6 @@ import { endpoint} from "../utils"
 
 export function Validate(props) {
   useEffect(()=> {
-    console.log(props.match.params.token)
     fetch(endpoint("/users/activate?token=" + props.match.params.token))
   },[])
   return (
