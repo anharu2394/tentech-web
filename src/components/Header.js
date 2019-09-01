@@ -38,7 +38,7 @@ export function Header() {
           <Navbar.Container position="end">
             <Wrapper>
             <Link to={"/" + currentUser.user.username} >
-              <Avatar src={currentUser.user.avatar}/>
+              <Avatar src={currentUser.user.avatar || "/default_avater.png"}/>
             </Link>
             </Wrapper>
           </Navbar.Container>
