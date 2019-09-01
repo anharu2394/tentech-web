@@ -1,4 +1,4 @@
-import React, { useEffect} from "react"
+import React, { useEffect, useState} from "react"
 import { CurrentUser } from "../App"
 import { Navbar, Button, Image } from 'react-bulma-components'
 import styled from 'styled-components'
@@ -6,30 +6,33 @@ import { Link } from "react-router-dom"
 
 export function Header() {
   let currentUser = CurrentUser.useContainer()
+	let [isActive, isSetActive] = useState(false)
   useEffect(() => {
     currentUser.validUser()
   },[])
   console.log(currentUser)
   return (
     <Navbar
+			active={isActive}
     >
       <Navbar.Brand>
         <Navbar.Item>
           <Link to="/">
-            <img
-              src="https://bulma.io/images/bulma-logo.png"
-              alt="Bulma: a modern CSS framework based on Flexbox"
-              width="112"
-              height="28"
-            />
+						<img src="/tentech.svg" />	
           </Link>
         </Navbar.Item>
-        <Navbar.Burger
+			<Navbar.Burger
+              active={isActive}
+            onClick={() => isSetActive(!isActive)}
         />
       </Navbar.Brand>
-      <Navbar.Menu >
+      <Navbar.Menu active={isActive}>
         <Navbar.Container>
-          <Navbar.Item href="#">みんなの投稿</Navbar.Item>
+          <Navbar.Item >
+						<Link to="/products">
+							みんなの投稿
+						</Link>
+					</Navbar.Item>
         </Navbar.Container>
         { currentUser.loggedIn &&
           <Navbar.Container position="end">

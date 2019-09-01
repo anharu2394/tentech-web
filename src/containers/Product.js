@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { endpoint } from "../utils"
 
 export function useProduct() {
-	let [ product, setProduct ] = useState({title:"", body:""})
-	let [ editProduct, setEditProduct ] = useState({title:"", body:""})
+	let [ product, setProduct ] = useState({title:"", body:"",tags:[]})
+	let [ reactions, setReactions ] = useState([])
+	let [ editProduct, setEditProduct ] = useState({title:"", body:"",tags:[]})
 	let [ author, setAuthor ] = useState({nickname:"",username:""})
   let createProduct = (product,token) => {
     const data = { product: product }
@@ -40,8 +41,10 @@ export function useProduct() {
     })
     .then(r => r.json())
 		.then(j => {
+			j.product.tags = j.tag_ids
 			setProduct(j.product)
 			setAuthor(j.user)
+			setReactions(j.reactions)
 			return j
 		})
   } 
@@ -52,9 +55,10 @@ export function useProduct() {
     })
     .then(r => r.json())
 		.then(j => {
+			j.product.tags = j.tag_ids
 			setEditProduct(j.product)
 			return j
 		})
   } 
-  return {createProduct, recreateProduct, fetchProduct, fetchEditProduct, product, author, editProduct}
+  return {createProduct, recreateProduct, fetchProduct, fetchEditProduct, product, author, editProduct,reactions, setReactions}
 }

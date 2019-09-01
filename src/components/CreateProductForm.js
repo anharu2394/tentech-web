@@ -262,7 +262,17 @@ export const CreateProductForm = withRouter((props)  => {
       data.setDuration(p.duration)
       data.setKind(p.kind)
       data.setStatus(p.status)
-
+			const tags = p.tags.map(i => {
+				return TagListContainer.tags.find(r => r.id === i)
+			})
+			data.setTags(tags)
+			tags.forEach(t => {
+				console.log(t)
+				if (t && "kind" in t) {
+					if (t.kind === "lang" ) { data.setSelectedLang(t) }
+					if (t.kind === "fw" ) { data.setSelectedFrame(t) }
+				}
+			})
     }
   },[props.editProduct])
 	useEffect(() => {
@@ -328,12 +338,14 @@ export const CreateProductForm = withRouter((props)  => {
 				<Form.Control>
 					<Form.Input type="text" value={data.title} onChange={e => data.setTitle(e.target.value)} /> <br />
 				</Form.Control>
+				<p>※1文字以上</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Label>簡単な説明</Form.Label>
 				<Form.Control>
 					<Form.Input type="text" value={data.simple} onChange={e => data.setSimple(e.target.value)} /> <br />
 				</Form.Control>
+				<p>※1文字以上</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Control>
@@ -350,6 +362,8 @@ export const CreateProductForm = withRouter((props)  => {
                 	maxFileSize={5242880}
             />
 				</Form.Control>
+				<p>※必須</p>
+				<p>※アップロードするか、画像のurlを入力してください</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Control>
@@ -408,6 +422,7 @@ export const CreateProductForm = withRouter((props)  => {
 						</Card.Content>
 					</Card>
 				</Form.Control>
+				<p>※1文字以上</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Control>
@@ -453,6 +468,7 @@ export const CreateProductForm = withRouter((props)  => {
         		options={TagListContainer.tags.filter(t => t.kind == "lang")}
       		/>
 				</Form.Control>
+				<p>※任意</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Control>
@@ -463,6 +479,7 @@ export const CreateProductForm = withRouter((props)  => {
         		options={TagListContainer.tags.filter(t => t.kind == "fw")}
       		/>
 				</Form.Control>
+				<p>※任意</p>
       </Form.Field>
 			<Form.Field>
 				<Form.Control>

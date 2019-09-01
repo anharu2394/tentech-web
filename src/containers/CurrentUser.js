@@ -14,7 +14,7 @@ export function useCurrentUser() {
   }
   let createUser = async (user) => {
     let data = { "user": user }
-    fetch(endpoint("/users"), {
+    return fetch(endpoint("/users"), {
         method: "POST",
         mode: "cors",
         headers: {
@@ -27,6 +27,7 @@ export function useCurrentUser() {
       if (res.ok) {
         loginUser(user.email, user.password) 
       }
+			throw new Error(res)
     })
   } 
   let editUser = async (user, id) => {

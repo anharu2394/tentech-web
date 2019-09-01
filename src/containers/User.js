@@ -14,6 +14,7 @@ const initialUser = {
 export function useUser() {
   let [user, setUser] = useState(initialUser)
   let [products, setProducts] = useState([])
+	let [reactions, setReactions] = useState([])
   let reset = () => {
     setUser({})
   }
@@ -48,5 +49,19 @@ export function useUser() {
       return j.products
     })
   } 
-  return { user, fetchUser, fetchProductsByUser, products}
+  let fetchReactionsByUser = async (user_id) => {
+    return fetch(endpoint("/users/" + user_id + "/reactions"), {
+        mode: "cors",
+    }
+    )
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+    })
+    .then(j => {
+      setReactions(j.map(r => Object.assign(r[1][1],{user:r[0]}, {product:r[1][0]}))) 
+    })
+  } 
+  return { user, fetchUser, fetchProductsByUser, fetchReactionsByUser,products, setProducts, reactions, setReactions}
 }
