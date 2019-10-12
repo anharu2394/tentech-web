@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import requests from "../requests"
-import { Container, Columns, Card, Tag, Media, Content, Image, Heading, Button, Hero, Section, Form, Notification} from 'react-bulma-components'
-
+import { Field, Label, Input, Checkbox }from 'react-bulma-components/lib/components/form'
+import Notification from 'react-bulma-components/lib/components/notification'
+import Button from 'react-bulma-components/lib/components/button'
 function useRegisterForm() {
   let [username, setUsername] = useState("")
   let [nickname, setNickname] = useState("")
@@ -31,34 +32,34 @@ export function RegisterForm(props) {
     }
     }>
 			{ !(data.error === "") && <Notification color="danger">{data.error}</Notification>}
-			<Form.Field>
-				<Form.Label>ユーザーネーム</Form.Label>
-				<Form.Input type="text" value={data.username} onChange={e => data.setUsername(e.target.value)} /> <br />
+			<Field>
+				<Label>ユーザーネーム</Label>
+				<Input type="text" value={data.username} onChange={e => data.setUsername(e.target.value)} /> <br />
 				<p>※英数字のみ可能</p>
 				<p>※1文字以上</p>
-			</Form.Field>
-			<Form.Field>
-				<Form.Label>ニックネーム</Form.Label>
-				<Form.Input type="text" value={data.nickname} onChange={e => data.setNickname(e.target.value)} /> <br />
+			</Field>
+			<Field>
+				<Label>ニックネーム</Label>
+				<Input type="text" value={data.nickname} onChange={e => data.setNickname(e.target.value)} /> <br />
 				<p>※1文字以上</p>
-			</Form.Field>
-			<Form.Field>
-				<Form.Label>メールアドレス</Form.Label>
-				<Form.Input type="email" value={data.email} onChange={e => data.setEmail(e.target.value)} /> <br />
-			</Form.Field>
-			<Form.Field>
-				<Form.Label>パスワード</Form.Label>
-				<Form.Input type="password" value={data.password} onChange={e => data.setPassword(e.target.value)} /> <br />
+			</Field>
+			<Field>
+				<Label>メールアドレス</Label>
+				<Input type="email" value={data.email} onChange={e => data.setEmail(e.target.value)} /> <br />
+			</Field>
+			<Field>
+				<Label>パスワード</Label>
+				<Input type="password" value={data.password} onChange={e => data.setPassword(e.target.value)} /> <br />
 				<p>※8文字以上</p>
-			</Form.Field>
-			<Form.Field>
-				<Form.Checkbox checked={data.accepted} onChange={e => data.setAccepted(e.target.checked)}>利用規約に同意する。</Form.Checkbox>
-			</Form.Field>
-			<Form.Field>
+			</Field>
+			<Field>
+				<Checkbox checked={data.accepted} onChange={e => data.setAccepted(e.target.checked)}>利用規約に同意する。</Checkbox>
+			</Field>
+			<Field>
 				<Button color="info" fullwidth={true} type="submit">登録</Button>
 				<p>※登録後、認証メールが送信されます。メールに含まれているリンクをクリックしてメールを認証してください</p>
 				<p>※ユーザーの作成に時間がかかることがあります</p>
-			</Form.Field>
+			</Field>
     </form>
   );
 }

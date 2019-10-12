@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react"
 import { RegisterForm} from "./RegisterForm"
 import { CurrentUser } from "../App"
 import { Redirect } from "react-router-dom"
-import { Progress, Container, Columns, Card, Tag, Media, Content, Image, Heading, Button, Hero, Section, Form, Box } from 'react-bulma-components'
+import { Radio }from 'react-bulma-components/lib/components/form'
+import Container from 'react-bulma-components/lib/components/container'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Button from 'react-bulma-components/lib/components/button'
+import Box from 'react-bulma-components/lib/components/box'
+import Progress from 'react-bulma-components/lib/components/progress'
+import Section from 'react-bulma-components/lib/components/section'
 import { Link } from "react-router-dom"
 import { endpoint} from "../utils"
 import { ProductList } from "./ProductList"
@@ -56,19 +62,19 @@ export function Suggestion(props) {
       "body": "あなたのプログラミング歴は？", 
       "comp": <Container className="is-size-5">
         <Box>
-          <Form.Radio checked={long === 0} onChange={() => setLong(0)} value={0}>
+          <Radio checked={long === 0} onChange={() => setLong(0)} value={0}>
             1年未満
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={long === 1} onChange={() => setLong(1)} value={1}>
+          <Radio checked={long === 1} onChange={() => setLong(1)} value={1}>
             1年以上2年未満
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={long === 2} onChange={() => setLong(2)} value={2}>
+          <Radio checked={long === 2} onChange={() => setLong(2)} value={2}>
             2年以上
-          </Form.Radio>
+          </Radio>
         </Box>
       </Container>
     },
@@ -76,39 +82,39 @@ export function Suggestion(props) {
       "body": "どのプログラミング言語を使ったことがある？" ,
       "comp": <Container className="is-size-5">
         <Box>
-          <Form.Radio checked={lang === "Python"} onChange={() => setLang("Python")} value="Python">
+          <Radio checked={lang === "Python"} onChange={() => setLang("Python")} value="Python">
             Python
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "Ruby"} onChange={() => setLang("Ruby")} value="Ruby">
+          <Radio checked={lang === "Ruby"} onChange={() => setLang("Ruby")} value="Ruby">
             Ruby
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "Java"} onChange={() => setLang("Java")} value="Java">
+          <Radio checked={lang === "Java"} onChange={() => setLang("Java")} value="Java">
             Java
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "PHP"} onChange={() => setLang("PHP")} value="PHP">
+          <Radio checked={lang === "PHP"} onChange={() => setLang("PHP")} value="PHP">
             PHP
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "JavaScript"} onChange={() => setLang("JavaScript")} value="JavaScript">
+          <Radio checked={lang === "JavaScript"} onChange={() => setLang("JavaScript")} value="JavaScript">
             JavaScript
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "other"} onChange={() => setLang("other")} value="other">
+          <Radio checked={lang === "other"} onChange={() => setLang("other")} value="other">
             その他
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={lang === "no"} onChange={() => setLang("no")} value="no">
+          <Radio checked={lang === "no"} onChange={() => setLang("no")} value="no">
             やったことがない
-          </Form.Radio>
+          </Radio>
         </Box>
       </Container>
     },
@@ -116,19 +122,19 @@ export function Suggestion(props) {
       "body": "興味のあるジャンルは？" ,
       "comp": <Container className="is-size-5">
         <Box>
-          <Form.Radio checked={kind === "WebApp"} onChange={() => setKind("WebApp")} value={"WebApp"}>
+          <Radio checked={kind === "WebApp"} onChange={() => setKind("WebApp")} value={"WebApp"}>
             Webアプリ
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={kind === "MobileApp"} onChange={() => setKind("MobileApp")} value={"MobileApp"}>
+          <Radio checked={kind === "MobileApp"} onChange={() => setKind("MobileApp")} value={"MobileApp"}>
           モバイルアプリ
-          </Form.Radio>
+          </Radio>
         </Box>
         <Box>
-          <Form.Radio checked={kind === "other"} onChange={() => setKind("other")} value={"other"}>
+          <Radio checked={kind === "other"} onChange={() => setKind("other")} value={"other"}>
             その他
-          </Form.Radio>
+          </Radio>
         </Box>
       </Container>
     },
