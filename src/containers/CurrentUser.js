@@ -11,6 +11,7 @@ export function useCurrentUser() {
     setUser({})
     setLoggedIn(false)
     setToken("")
+    localStorage.setItem("token", "")
   }
   let createUser = async (user) => {
     let data = { "user": user }
