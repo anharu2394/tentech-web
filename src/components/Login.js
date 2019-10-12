@@ -7,7 +7,6 @@ import { Link } from "react-router-dom"
 
 export function Login(props) {
   let currentUser = CurrentUser.useContainer()
-  console.log(currentUser)
   if (currentUser.loggedIn) {
     return <Redirect to="/home" />
   }

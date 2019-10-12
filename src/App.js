@@ -12,6 +12,7 @@ import { EditProduct } from './components/EditProduct'
 import { Product as ProductComponent } from './components/Product'
 import { ProductsPage } from './components/ProductsPage'
 import { Suggestion } from './components/Suggestion'
+import { Validate } from './components/Validate'
 import logo from './logo.svg'
 import './App.scss'
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom"
@@ -50,6 +51,7 @@ function App() {
 										<Route path="/login" exact component={Login} />
 										<Route path="/products" exact component={ProductsPage} />
 										<Route path="/suggestion" exact component={Suggestion} />
+										<Route path="/validate/:token" exact component={Validate} />
 										<Route path="/:user/products/:uuid/edit" exact component={EditProduct } />
 										<UserPage.Provider>
 											<Route path="/:user/edit" exact component={EditUser } />

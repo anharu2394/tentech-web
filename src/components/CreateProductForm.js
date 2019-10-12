@@ -17,7 +17,6 @@ const plugins = [
   InsertImages({
     extensions: ['png', 'jpg','jpeg','svg'],
     insertImage: (change, file) => {
-      console.log(change)
       return change.insertBlock({
         type: 'image',
         isVoid: true,
@@ -79,7 +78,6 @@ const rules = [
           case 'list-item':
             return <li>{children}</li>
           case "image": {
-              console.log(obj)
             return (
               <img src={obj.data.get("url")} />
           )
@@ -249,7 +247,6 @@ export const CreateProductForm = withRouter((props)  => {
   }
   let data = useProductForm(initialValue)
   const { history, location, match } = useReactRouter()
-    console.log(props)
   let req_data
   useEffect(()=> {
     TagListContainer.fetchTags()
@@ -267,7 +264,6 @@ export const CreateProductForm = withRouter((props)  => {
 			})
 			data.setTags(tags)
 			tags.forEach(t => {
-				console.log(t)
 				if (t && "kind" in t) {
 					if (t.kind === "lang" ) { data.setSelectedLang(t) }
 					if (t.kind === "fw" ) { data.setSelectedFrame(t) }
@@ -329,7 +325,6 @@ export const CreateProductForm = withRouter((props)  => {
         req_data.uuid = props.editProduct.uuid
       }  
       props.createProduct(req_data,props.token).then(r => {
-        console.log(r)
         history.push("/a/products/" + r.product.uuid)      
       })
     }}>
@@ -411,7 +406,6 @@ export const CreateProductForm = withRouter((props)  => {
                   value={data.body}
                   onChange={v => { 
                     data.setBody(v.value)
-                    console.log("ss")
                   }}
                   ref={e => editor=e} 
                   renderMark={renderMark}

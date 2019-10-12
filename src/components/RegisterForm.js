@@ -20,7 +20,6 @@ export function RegisterForm(props) {
     email: data.email,
     password: data.password
   }
-  console.log(props)
   return (
     <form onSubmit={e => {
         e.preventDefault()

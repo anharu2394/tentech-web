@@ -40,12 +40,26 @@ export function Header() {
 							みんなの投稿
 						</Link>
 					</Navbar.Item>
+          { currentUser.loggedIn &&
+            <Navbar.Item >
+              <Link to="/home">
+                投稿する
+              </Link>
+            </Navbar.Item>
+          }
+          { currentUser.loggedIn ||
+            <Navbar.Item >
+              <Link to="/login">
+                ログイン
+              </Link>
+            </Navbar.Item>
+          }
         </Navbar.Container>
         { currentUser.loggedIn &&
           <Navbar.Container position="end">
             <Wrapper>
             <Link to={"/" + currentUser.user.username} >
-              <Avatar src={currentUser.user.avatar}/>
+              <Avatar src={currentUser.user.avatar || "/default_avater.png"}/>
             </Link>
             </Wrapper>
           </Navbar.Container>
