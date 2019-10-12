@@ -1,5 +1,7 @@
 import React, { useEffect} from "react"
-import { Icon, Notification,Tag, Navbar, Button, Image, Card, Content, Media, Heading, Columns, Section, Container } from 'react-bulma-components'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Section from 'react-bulma-components/lib/components/section'
+import Container from 'react-bulma-components/lib/components/container'
 import styled from 'styled-components'
 import { Product, CurrentUser, PostAttach, TagList, ProductList as ProductListContainer } from "../App"
 import { Link } from "react-router-dom"
