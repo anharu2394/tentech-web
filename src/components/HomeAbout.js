@@ -27,6 +27,19 @@ export function HomeAbout(props) {
           </Container>
         </Hero.Body>
       </Hero>
+      <Hero color="info">
+        <Hero.Body>
+          <Container>
+          <Heading>あなたのプロジェクトを投稿しよう！</Heading>
+            <Heading subtitle size={4}>
+              Webアプリ、モバイルアプリ、ライブラリ、なんでも投稿OK
+            </Heading>
+            <Link to="/signup">
+						  <Button size="large">登録する（無料）</Button>
+					  </Link>
+          </Container>
+        </Hero.Body>
+      </Hero>
       <Section className="has-text-centered">
         <Container>
           <Heading>作るものが見つからない？</Heading>
@@ -34,7 +47,7 @@ export function HomeAbout(props) {
 						簡単な<strong>3つの質問</strong>であなたが作りやすいものを提案します
           </Heading>
 					<Link to="/suggestion">
-						<Button size="large" color="info">答える</Button>
+					  <Button size="large" color="info">答える</Button>
 					</Link>
         </Container>
       </Section>
