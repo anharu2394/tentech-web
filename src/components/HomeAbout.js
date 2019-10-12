@@ -1,5 +1,11 @@
 import React, { useEffect} from "react"
-import { Section, Hero, Container, Heading, Button, Columns, Box } from 'react-bulma-components'
+import Section from 'react-bulma-components/lib/components/section'
+import Container from 'react-bulma-components/lib/components/container'
+import Hero from 'react-bulma-components/lib/components/hero'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Button from 'react-bulma-components/lib/components/button'
+import Box from 'react-bulma-components/lib/components/box'
+import Columns from 'react-bulma-components/lib/components/columns'
 import { CreateProductForm } from "./CreateProductForm";
 import { Product, CurrentUser, PostAttach, TagList, ProductList as ProductListContainer } from "../App"
 import { Link } from "react-router-dom"
@@ -17,11 +23,11 @@ export function HomeAbout(props) {
       <Hero color="primary" size="medium">
         <Hero.Body>
           <Container>
-            <Heading>アウトプットはあなたの強み</Heading>
-            <Heading subtitle size={4}>
+            <Heading className="is-size-1-desktop">アウトプットはあなたの強み</Heading>
+            <Heading subtitle size={5} className="is-size-4-desktop">
               アウトプットをして、あなたの学んだことを証明しましょう
             </Heading>
-            <Heading subtitle size={5}>
+            <Heading subtitle size={6} className="is-size-4-desktop">
               コンソールアプリ、Webアプリ、モバイルアプリ。簡単なものから作ってみよう
             </Heading>
           </Container>
@@ -30,8 +36,8 @@ export function HomeAbout(props) {
       <Hero color="info">
         <Hero.Body>
           <Container>
-          <Heading>あなたのプロジェクトを投稿しよう！</Heading>
-            <Heading subtitle size={4}>
+          <Heading size={5} className="is-size-3-desktop">あなたのプロジェクトを投稿しよう！</Heading>
+            <Heading subtitle size={6} className="is-size-4-desktop">
               Webアプリ、モバイルアプリ、ライブラリ、なんでも投稿OK
             </Heading>
             <Link to="/signup">
