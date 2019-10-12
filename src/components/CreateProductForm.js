@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react"
 import { loginUser } from "../requests"
 import { withRouter } from 'react-router-dom'
 import useReactRouter from 'use-react-router'
-import { Form, Button, Card, Icon, Level, Content} from 'react-bulma-components'
+import { Field, Label, Input, Radio, Control }from 'react-bulma-components/lib/components/form'
+import Button from 'react-bulma-components/lib/components/button'
+import Card from 'react-bulma-components/lib/components/card'
+import Level from 'react-bulma-components/lib/components/level'
+import Content from 'react-bulma-components/lib/components/content'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
@@ -333,24 +337,24 @@ export const CreateProductForm = withRouter((props)  => {
         history.push("/a/products/" + r.product.uuid)      
       })
     }}>
-			<Form.Field>
-				<Form.Label>タイトル</Form.Label>
-				<Form.Control>
-					<Form.Input type="text" value={data.title} onChange={e => data.setTitle(e.target.value)} /> <br />
-				</Form.Control>
+			<Field>
+				<Label>タイトル</Label>
+				<Control>
+					<Input type="text" value={data.title} onChange={e => data.setTitle(e.target.value)} /> <br />
+				</Control>
 				<p>※1文字以上</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Label>簡単な説明</Form.Label>
-				<Form.Control>
-					<Form.Input type="text" value={data.simple} onChange={e => data.setSimple(e.target.value)} /> <br />
-				</Form.Control>
+      </Field>
+			<Field>
+				<Label>簡単な説明</Label>
+				<Control>
+					<Input type="text" value={data.simple} onChange={e => data.setSimple(e.target.value)} /> <br />
+				</Control>
 				<p>※1文字以上</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>画像</Form.Label>
-					<Form.Input type="text" value={data.img} onChange={e => data.setImg(e.target.value)} /> <br />
+      </Field>
+			<Field>
+				<Control>
+					<Label>画像</Label>
+					<Input type="text" value={data.img} onChange={e => data.setImg(e.target.value)} /> <br />
           <ImageUploader
                   className="file"
                 	withIcon={true}
@@ -361,13 +365,13 @@ export const CreateProductForm = withRouter((props)  => {
                 	imgExtension={['.jpg', '.gif', '.png', '.svg']}
                 	maxFileSize={5242880}
             />
-				</Form.Control>
+				</Control>
 				<p>※必須</p>
 				<p>※アップロードするか、画像のurlを入力してください</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>説明</Form.Label>
+      </Field>
+			<Field>
+				<Control>
+					<Label>説明</Label>
 					<Card>
 						<Card.Header>
 							<Level>
@@ -421,71 +425,71 @@ export const CreateProductForm = withRouter((props)  => {
               </Content>
 						</Card.Content>
 					</Card>
-				</Form.Control>
+				</Control>
 				<p>※1文字以上</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>種類</Form.Label>
-					<Form.Select value={data.kind} onChange={e => data.setKind(e.target.value)} >
+      </Field>
+			<Field>
+				<Control>
+					<Label>種類</Label>
+					<Select value={data.kind} onChange={e => data.setKind(e.target.value)} >
 						<option value="WebApp">Webアプリ</option>
 						<option value="MobileApp">モバイルアプリ</option>
 						<option value="DesktopApp">デスクトップアプリ</option>
 						<option value="Package">ライブラリ・パッケージ</option>
 						<option value="Others">その他</option>
-					</Form.Select><br />
-				</Form.Control>
-      </Form.Field>
-      <Form.Field>
-        <Form.Control>
-					<Form.Label>ステータス</Form.Label>
-          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'New'} value="New">
+					</Select><br />
+				</Control>
+      </Field>
+      <Field>
+        <Control>
+					<Label>ステータス</Label>
+          <Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'New'} value="New">
             構想段階
-          </Form.Radio>
-          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'InProgress'} value="InProgress">
+          </Radio>
+          <Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'InProgress'} value="InProgress">
             開発中
-          </Form.Radio>
-          <Form.Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'Completed'} value="Completed">
+          </Radio>
+          <Radio onChange={e => data.setStatus(e.target.value)} checked={data.status === 'Completed'} value="Completed">
             完成
-          </Form.Radio>
-        </Form.Control>
-      </Form.Field>
+          </Radio>
+        </Control>
+      </Field>
       { data.status == "Completed" ? (
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>かかった時間</Form.Label>
-					<Form.Input type="number" value={data.duration} onChange={e => data.setDuration(e.target.value)} /> <br />
-				</Form.Control>
-      </Form.Field>
+			<Field>
+				<Control>
+					<Label>かかった時間</Label>
+					<Input type="number" value={data.duration} onChange={e => data.setDuration(e.target.value)} /> <br />
+				</Control>
+      </Field>
       ):null
       }
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>使用した言語</Form.Label>
+			<Field>
+				<Control>
+					<Label>使用した言語</Label>
           <Select
         		value={data.selectedLang}
         		onChange={e => data.setSelectedLang(e)}
         		options={TagListContainer.tags.filter(t => t.kind == "lang")}
       		/>
-				</Form.Control>
+				</Control>
 				<p>※任意</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Control>
-					<Form.Label>使用したフレームワーク</Form.Label>
+      </Field>
+			<Field>
+				<Control>
+					<Label>使用したフレームワーク</Label>
           <Select
         		value={data.selectedFrame}
         		onChange={e => data.setSelectedFrame(e)}
         		options={TagListContainer.tags.filter(t => t.kind == "fw")}
       		/>
-				</Form.Control>
+				</Control>
 				<p>※任意</p>
-      </Form.Field>
-			<Form.Field>
-				<Form.Control>
+      </Field>
+			<Field>
+				<Control>
       		<Button type="submit">投稿</Button>
-				</Form.Control>
-      </Form.Field>
+				</Control>
+      </Field>
     </form>
   );
 })
