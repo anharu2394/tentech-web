@@ -1,6 +1,14 @@
 import React, { useEffect, useState} from "react"
 import { CurrentUser, UserPage, TagList } from "../App"
-import { Box, Button, Image, Notification, Container, Columns, Heading, Level, Section } from 'react-bulma-components'
+import Section from 'react-bulma-components/lib/components/section'
+import Container from 'react-bulma-components/lib/components/container'
+import Image from 'react-bulma-components/lib/components/image'
+import Notification from 'react-bulma-components/lib/components/notification'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Button from 'react-bulma-components/lib/components/button'
+import Box from 'react-bulma-components/lib/components/box'
+import Level from 'react-bulma-components/lib/components/level'
+import Columns from 'react-bulma-components/lib/components/columns'
 import styled from 'styled-components'
 import { ProductList } from "./ProductList"
 import { ReactionList } from "./ReactionList"
