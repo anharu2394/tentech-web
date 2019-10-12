@@ -11,6 +11,7 @@ export function useCurrentUser() {
     setUser({})
     setLoggedIn(false)
     setToken("")
+    localStorage.setItem("token", "")
   }
   let createUser = async (user) => {
     let data = { "user": user }
@@ -97,6 +98,6 @@ export function useCurrentUser() {
       reset()
     })
   }
-  return { user, loggedIn, token, createUser, loginUser, validUser, editUser}
+  return { user, loggedIn, token, createUser, loginUser, validUser, editUser, reset}
 }
 
