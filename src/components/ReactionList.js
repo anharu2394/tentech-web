@@ -1,5 +1,5 @@
 import React, { useEffect} from "react"
-import { Icon, Notification,Tag, Navbar, Button, Image, Card, Content, Media, Heading, Columns } from 'react-bulma-components'
+import {  Notification, Image, Media } from 'react-bulma-components'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
