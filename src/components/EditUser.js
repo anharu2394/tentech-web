@@ -1,7 +1,10 @@
 import React, { useEffect} from "react"
 import { CurrentUser, UserPage, PostAttach,TagList } from "../App"
 import { EditUserForm } from "./EditUserForm"
-import { Container, Button, Card, Icon, Level, Columns, Heading, Section} from 'react-bulma-components'
+import Container from 'react-bulma-components/lib/components/container'
+import Columns from 'react-bulma-components/lib/components/columns'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Section from 'react-bulma-components/lib/components/section'
 
 export function EditUser(props) {
   let currentUser = CurrentUser.useContainer()
