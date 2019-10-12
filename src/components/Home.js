@@ -1,5 +1,7 @@
 import React, { useEffect} from "react"
-import { Section, Hero, Container, Heading } from 'react-bulma-components'
+import Container from 'react-bulma-components/lib/components/container'
+import Hero from 'react-bulma-components/lib/components/hero'
+import Heading from 'react-bulma-components/lib/components/heading'
 import { CreateProductForm } from "./CreateProductForm";
 import { Product, CurrentUser, PostAttach, TagList } from "../App"
 
