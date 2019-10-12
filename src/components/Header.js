@@ -10,7 +10,6 @@ export function Header() {
   useEffect(() => {
     currentUser.validUser()
   },[])
-  console.log(currentUser)
   return (
     <Navbar
 			active={isActive}
