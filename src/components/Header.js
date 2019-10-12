@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react"
 import { CurrentUser } from "../App"
-import { Navbar, Button, Image } from 'react-bulma-components'
+import Navbar from 'react-bulma-components/lib/components/navbar'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
