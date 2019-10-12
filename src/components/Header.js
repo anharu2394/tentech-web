@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react"
 import { CurrentUser } from "../App"
-import { Navbar, Button, Image } from 'react-bulma-components'
+import Navbar from 'react-bulma-components/lib/components/navbar'
+import Button from 'react-bulma-components/lib/components/button'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
@@ -10,7 +11,6 @@ export function Header() {
   useEffect(() => {
     currentUser.validUser()
   },[])
-  console.log(currentUser)
   return (
     <Navbar
 			active={isActive}
@@ -21,6 +21,13 @@ export function Header() {
 						<img src="/tentech.svg" />	
           </Link>
         </Navbar.Item>
+        { currentUser.loggedIn ||
+          <Navbar.Item>
+            <Link to="/signup">
+				  		<Button color="info">登録する</Button>
+				  	</Link>
+				  </Navbar.Item>
+        }
 			<Navbar.Burger
               active={isActive}
             onClick={() => isSetActive(!isActive)}
@@ -28,7 +35,7 @@ export function Header() {
       </Navbar.Brand>
       <Navbar.Menu active={isActive}>
         <Navbar.Container>
-          <Navbar.Item >
+          <Navbar.Item>
 						<Link to="/products">
 							みんなの投稿
 						</Link>
