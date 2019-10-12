@@ -18,7 +18,7 @@ export function Header() {
       <Navbar.Brand>
         <Navbar.Item>
           <Link to="/">
-						<img src="/tentech.svg" />	
+						<Image src="/tentech.svg" />	
           </Link>
         </Navbar.Item>
         { currentUser.loggedIn ||
@@ -76,7 +76,9 @@ const Avatar = styled.img`
   padding: 3px;
   display: block;
   max-width: 100%;
-
-  max-height: 100%;
+  height: 80px;
   border-radius: 290486px;
+`
+const Image = styled.img`
+  height: 50px;
 `
