@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from "react"
 import { CurrentUser, UserPage } from "../App"
 import { PostAttach } from "../App"
-import { Form, Button, Card, Icon, Level, Content} from 'react-bulma-components'
+import { Field, Label, Input, Textarea, Control }from 'react-bulma-components/lib/components/form'
+import Button from 'react-bulma-components/lib/components/button'
 import ImageUploader from 'react-images-upload'
 import useReactRouter from 'use-react-router'
 
@@ -54,21 +55,21 @@ export function EditUserForm(props) {
             history.push("/" + user.username)      
           })
         }}>
-          <Form.Field>
-            <Form.Label>
+          <Field>
+            <Label>
             ニックネーム
-            </Form.Label>
-            <Form.Control>
-					    <Form.Input type="text" value={data.nickname} onChange={e => data.setNickname(e.target.value)} /> <br />
+            </Label>
+            <Control>
+					    <Input type="text" value={data.nickname} onChange={e => data.setNickname(e.target.value)} /> <br />
     
-            </Form.Control>
-          </Form.Field>
-          <Form.Field>
-            <Form.Label>
+            </Control>
+          </Field>
+          <Field>
+            <Label>
             アイコン画像
-            </Form.Label>
-            <Form.Control>
-					    <Form.Input type="text" value={data.avatar} onChange={e => data.setAvatar(e.target.value)} /> <br />
+            </Label>
+            <Control>
+					    <Input type="text" value={data.avatar} onChange={e => data.setAvatar(e.target.value)} /> <br />
           <ImageUploader
                   className="file"
                 	withIcon={true}
@@ -80,22 +81,22 @@ export function EditUserForm(props) {
                 	maxFileSize={5242880}
             />
     
-            </Form.Control>
-          </Form.Field>
-          <Form.Field>
-            <Form.Label>
+            </Control>
+          </Field>
+          <Field>
+            <Label>
               自己紹介
-            </Form.Label>
-            <Form.Control>
-					    <Form.Textarea placeholder="自己紹介を書いてみよう" value={data.bio} onChange={e => data.setBio(e.target.value)} /> <br />
+            </Label>
+            <Control>
+					    <Textarea placeholder="自己紹介を書いてみよう" value={data.bio} onChange={e => data.setBio(e.target.value)} /> <br />
     
-            </Form.Control>
-          </Form.Field>
-        <Form.Field>
-          <Form.Control>
+            </Control>
+          </Field>
+        <Field>
+          <Control>
             <Button type="submit" fullwidth={true} color="info">更新</Button>
-          </Form.Control>
-        </Form.Field>
+          </Control>
+        </Field>
         </form>
       </div>
   )
