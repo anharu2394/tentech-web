@@ -97,6 +97,6 @@ export function useCurrentUser() {
       reset()
     })
   }
-  return { user, loggedIn, token, createUser, loginUser, validUser, editUser}
+  return { user, loggedIn, token, createUser, loginUser, validUser, editUser, reset}
 }
 
