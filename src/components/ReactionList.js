@@ -1,5 +1,7 @@
 import React, { useEffect} from "react"
-import {  Notification, Image, Media } from 'react-bulma-components'
+import Notification from 'react-bulma-components/lib/components/notification'
+import Image from 'react-bulma-components/lib/components/image'
+import Media from 'react-bulma-components/lib/components/media'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
