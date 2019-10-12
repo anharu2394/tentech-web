@@ -81,7 +81,7 @@ export function User(props) {
 			<Columns>
 				<Columns.Column size={4}>
           <Section>
-            <Avatar src={user.avatar ? user.avatar : "/default_avater"} />
+            <Avatar src={user.avatar ? user.avatar : "/default_avater.png"} />
             <Heading>{user.nickname}</Heading> 
             <Heading subtitle><small>@{user.username}</small></Heading>
             <p>{user.bio ? user.bio : "よろしく"}</p>

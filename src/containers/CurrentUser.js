@@ -48,7 +48,6 @@ export function useCurrentUser() {
   } 
   let loginUser = async (email, password) => {
     let data = { email, password }
-    console.log(data)
     fetch(endpoint("/users/login"), {
         method: "POST",
         mode: "cors",
@@ -59,7 +58,6 @@ export function useCurrentUser() {
     })
     .catch(e => console.log(e.message))
     .then(res => {
-      console.log(res)
       if (res.ok) {
         return res.json()
       }
@@ -84,7 +82,6 @@ export function useCurrentUser() {
         },
     })
     .then(res => {
-      console.log(res)
       if (res.ok) {
         return res.json()
       }
@@ -92,13 +89,11 @@ export function useCurrentUser() {
       reset()
     })
     .then(json => {
-      console.log(json)
       setToken(token)
       setUser(json.user)
       setLoggedIn(true)
     })
     .catch(e => {
-      console.log(e)
       reset()
     })
   }

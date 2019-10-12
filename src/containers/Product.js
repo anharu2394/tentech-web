@@ -8,7 +8,6 @@ export function useProduct() {
 	let [ author, setAuthor ] = useState({nickname:"",username:""})
   let createProduct = (product,token) => {
     const data = { product: product }
-    console.log(JSON.stringify(data))
     return fetch(endpoint("/products"),{
       method: "POST",
       mode: "cors",

@@ -60,7 +60,7 @@ export function useUser() {
       }
     })
     .then(j => {
-      setReactions(j.map(r => Object.assign(r[1][1],{user:r[0]}, {product:r[1][0]}))) 
+      setReactions(j.map(r => Object.assign(r[1],{user:r[2]}, {product:r[0]}))) 
     })
   } 
   return { user, fetchUser, fetchProductsByUser, fetchReactionsByUser,products, setProducts, reactions, setReactions}

@@ -4,7 +4,6 @@ import { endpoint } from "../utils"
 export function usePostAttach() {
   const createAttachment = (attachment,token) => {
     const data = { "asset": attachment }
-    console.log(data)
     return fetch(endpoint("/upload"),{
       method: "POST",
       mode: "cors",
