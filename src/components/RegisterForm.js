@@ -11,20 +11,55 @@ function useRegisterForm() {
   let [password, setPassword] = useState("")
   let [accepted, setAccepted] = useState(false)
   let [error, setError] = useState("")
+  let [errors, setErrors] = useState({username: null, nickname: null, email: null, password: null})
+  let [oks, setOks] = useState({username: false, nickname: false, email: false, password: false})
   const handleInputChange = (event) => {
-	event.persist();
-	if (event.target.name === "accepted") {
-		setInputs(inputs => ({...inputs, [event.target.name]: event.target.checked}))
-	}
-	else{
-		setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
-	}
+    event.persist();
+    if (event.target.name === "accepted") {
+      setInputs(inputs => ({...inputs, [event.target.name]: event.target.checked}))
+    }
+    else{
+      setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
+    }
   }
-  return {handleInputChange, inputs, setInputs, username, nickname, email, password, setUsername, setNickname, setEmail, setPassword, accepted, setAccepted, error, setError}
+  const validate = (event) => {
+    event.persist();
+    switch (event.target.name) {
+      case "nickname":
+        if (!inputs.nickname) {
+          setErrors({...errors, nickname: "ニックネームを入力してください"}) 
+          setOks({...oks, nickname: false})
+          break
+        }
+        if (inputs.nickname.length < 1 && inputs.nickname.length > 50) {
+          setErrors({...errors, nickname: "文字数を1以上50以下にしてください"}) 
+          setOks({...oks, nickname: false})
+          break
+        }
+        setErrors({...errors, nickname: null})
+        setOks({...oks, nickname: true})
+        break
+      case "password":
+        if (!inputs.password) {
+          setErrors({...errors, password: "パスワードを入力してください"}) 
+          setOks({...oks, password: false})
+          break
+        }
+        if (inputs.password.length < 8) {
+          setErrors({...errors, password: "文字数を8以上にしてください"}) 
+          setOks({...oks, password: false})
+          break
+        }
+        setErrors({...errors, password: null})
+        setOks({...oks, password: true})
+        break
+    }
+  }
+  return {handleInputChange, validate, inputs, setInputs, username, nickname, email, password, setUsername, setNickname, setEmail, setPassword, accepted, setAccepted, error, setError, errors, oks}
 }
 
 export function RegisterForm(props) {
-  let {inputs, setError, error, handleInputChange} = useRegisterForm()
+  let {inputs, setError, error, errors, oks, handleInputChange, validate} = useRegisterForm()
   let user = {
     username: inputs.username,
     nickname: inputs.nickname,
@@ -44,23 +79,34 @@ export function RegisterForm(props) {
 			{ !(error === "") && <Notification color="danger">{error}</Notification>}
 			<Field>
 				<Label>ユーザーネーム</Label>
-				<Input type="text" value={inputs.username} name="username" onChange={handleInputChange} /> <br />
+        <Control>
+				  <Input type="text" value={inputs.username} name="username" onChange={handleInputChange} required minlength="1" maxlength="15"/> <br />
+        </Control>
 				<p>※英数字のみ可能</p>
 				<p>※1文字以上</p>
 			</Field>
 			<Field>
 				<Label>ニックネーム</Label>
-				<Input type="text" value={inputs.nickname} name="nickname" onChange={handleInputChange} /> <br />
+        <Control>
+				  <Input type="text" value={inputs.nickname} name="nickname" color={errors.nickname ? "danger" : oks.nickname && "success"}onChange={handleInputChange} onBlur={validate} required minlength="1" maxlength="50"/> <br />
+        </Control>
 				<p>※1文字以上</p>
+        { errors.nickname && <Help color="danger">{errors.nickname}</Help>}
 			</Field>
 			<Field>
 				<Label>メールアドレス</Label>
-				<Input type="email" value={inputs.email} name="email" onChange={handleInputChange} /> <br />
+        <Control>
+				  <Input type="email" value={inputs.email} name="email" onChange={handleInputChange} onBlur={validate} required/> <br />
+        </Control>
+				<p>※1文字以上</p>
 			</Field>
 			<Field>
 				<Label>パスワード</Label>
-				<Input type="password" value={inputs.password} name="password" onChange={handleInputChange} /> <br />
+        <Control>
+				  <Input type="password" value={inputs.password} name="password" color={errors.password ? "danger" : oks.password && "success"} onChange={handleInputChange} onBlur={validate} required minlength="8"/> <br />
+        </Control>
 				<p>※8文字以上</p>
+        { errors.password && <Help color="danger">{errors.password}</Help>}
 			</Field>
 			<Field>
 				<Checkbox checked={inputs.accepted} name="accepted" onChange={handleInputChange}>利用規約に同意する。</Checkbox>
