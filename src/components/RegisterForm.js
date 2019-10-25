@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import requests from "../requests"
-import { Field, Label, Input, Checkbox }from 'react-bulma-components/lib/components/form'
+import { Field, Label, Input, Checkbox, Control, Help }from 'react-bulma-components/lib/components/form'
 import Notification from 'react-bulma-components/lib/components/notification'
 import Button from 'react-bulma-components/lib/components/button'
 function useRegisterForm() {
