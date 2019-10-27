@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import requests from "../requests"
+import { endpoint} from "../utils"
 import { Field, Label, Input, Checkbox, Control, Help }from 'react-bulma-components/lib/components/form'
 import Notification from 'react-bulma-components/lib/components/notification'
 import Button from 'react-bulma-components/lib/components/button'
+import { kMaxLength } from "buffer";
 function useRegisterForm() {
   let [inputs, setInputs] = useState({})
   let [username, setUsername] = useState("")
@@ -22,9 +24,80 @@ function useRegisterForm() {
       setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
     }
   }
+  const check_to_api = (user) => {
+    let data = { "user": user }
+    return fetch(endpoint("/users/create/attempt"), {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(data)
+    })
+  }
   const validate = (event) => {
     event.persist();
     switch (event.target.name) {
+      case "username":
+        check_to_api(inputs).then(r => r.json()).then(j => {
+          if ("errors" in j) {
+            j.errors.some(e => {
+              if (e === "AlreadyUsernameRegistered") {
+                setErrors({...errors, username: "このユーザーネームは既に使用されてます"}) 
+                setOks({...oks, username: false})
+                return true
+              }
+              if ("ValidationFailed" in e) {
+                if ("username" in e.ValidationFailed) {
+                  e.ValidationFailed.username.forEach(v => {
+                    if (v.code === "regex") {
+                      setErrors({...errors, username: "英数字のみの文字で登録してください"}) 
+                      setOks({...oks, username: false})
+                    }
+                  })
+                  return true
+                }
+              }
+              setErrors({...errors, username: null})
+              setOks({...oks, username: true})
+            })
+          }
+          else {
+            setErrors({...errors, username: null})
+            setOks({...oks, username: true})
+          }
+        })
+        break
+      case "email":
+          check_to_api(inputs).then(r => r.json()).then(j => {
+            if ("errors" in j) {
+              j.errors.some(e => {
+                if (e === "AlreadyEmailRegistered") {
+                  setErrors({...errors, email: "このメールアドレスは既に使用されてます"}) 
+                  setOks({...oks, email: false})
+                  return true
+                }
+                if ("ValidationFailed" in e) {
+                  if ("email" in e.ValidationFailed) {
+                    e.ValidationFailed.email.forEach(v => {
+                      if (v.code === "email") {
+                        setErrors({...errors, email: "メールアドレスを入力してください"}) 
+                        setOks({...oks, email: false})
+                      }
+                    })
+                    return true
+                  }
+                }
+                setErrors({...errors, email: null})
+                setOks({...oks, email: true})
+              })
+            }
+            else {
+              setErrors({...errors, email: null})
+              setOks({...oks, email: true})
+            }
+          })
+        break
       case "nickname":
         if (!inputs.nickname) {
           setErrors({...errors, nickname: "ニックネームを入力してください"}) 
@@ -80,24 +153,28 @@ export function RegisterForm(props) {
 			<Field>
 				<Label>ユーザーネーム</Label>
         <Control>
-				  <Input type="text" value={inputs.username} name="username" onChange={handleInputChange} required minlength="1" maxlength="15"/> <br />
+				  <Input type="text" value={inputs.username} name="username" color={errors.username ? "danger" : oks.username && "success"} onChange={handleInputChange} required minlength="1" maxlength="15" onBlur={validate}/> <br />
         </Control>
+        { errors.username && <Help color="danger">{errors.username}</Help>}
 				<p>※英数字のみ可能</p>
 				<p>※1文字以上</p>
+        
 			</Field>
 			<Field>
 				<Label>ニックネーム</Label>
         <Control>
 				  <Input type="text" value={inputs.nickname} name="nickname" color={errors.nickname ? "danger" : oks.nickname && "success"}onChange={handleInputChange} onBlur={validate} required minlength="1" maxlength="50"/> <br />
         </Control>
-				<p>※1文字以上</p>
         { errors.nickname && <Help color="danger">{errors.nickname}</Help>}
+				<p>※1文字以上</p>
+
 			</Field>
 			<Field>
 				<Label>メールアドレス</Label>
         <Control>
-				  <Input type="email" value={inputs.email} name="email" onChange={handleInputChange} onBlur={validate} required/> <br />
+				  <Input type="email" value={inputs.email} name="email" color={errors.email ? "danger" : oks.email && "success"} onChange={handleInputChange} onBlur={validate} required/> <br />
         </Control>
+        { errors.email && <Help color="danger">{errors.email}</Help>}
 				<p>※1文字以上</p>
 			</Field>
 			<Field>
