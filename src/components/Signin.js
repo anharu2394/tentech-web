@@ -2,7 +2,11 @@ import React from "react"
 import { RegisterForm} from "./RegisterForm"
 import { CurrentUser } from "../App"
 import { Redirect } from "react-router-dom"
-import { Container, Columns, Card, Tag, Media, Content, Image, Heading, Button, Hero, Section, Form, Box } from 'react-bulma-components'
+import Container from 'react-bulma-components/lib/components/container'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Button from 'react-bulma-components/lib/components/button'
+import Box from 'react-bulma-components/lib/components/box'
+import Columns from 'react-bulma-components/lib/components/columns'
 import { Link } from "react-router-dom"
 
 export function Signin(props) {

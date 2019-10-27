@@ -1,6 +1,12 @@
 import React, { useEffect} from "react"
 import { CurrentUser, TagList } from "../App"
-import { Icon, Tag, Navbar, Button, Image, Card, Content, Media, Heading, Columns } from 'react-bulma-components'
+import Tag from 'react-bulma-components/lib/components/tag'
+import Image from 'react-bulma-components/lib/components/image'
+import Card from 'react-bulma-components/lib/components/card'
+import Content from 'react-bulma-components/lib/components/content'
+import Media from 'react-bulma-components/lib/components/media'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Columns from 'react-bulma-components/lib/components/columns'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { endpoint} from "../utils"

@@ -14,7 +14,7 @@ import { ProductsPage } from './components/ProductsPage'
 import { Suggestion } from './components/Suggestion'
 import { Validate } from './components/Validate'
 import logo from './logo.svg'
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import './App.scss'
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom"
 import { useCurrentUser } from "./containers/CurrentUser"
 import { useProduct } from "./containers/Product"

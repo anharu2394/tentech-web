@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react"
 import { CurrentUser, Product as ProductContainer, TagList } from "../App"
-import { Container, Columns, Card, Tag, Media, Content, Image, Heading, Button, Hero, Section } from 'react-bulma-components'
+import { Container, Columns, Card, Media, Content, Image, Heading, Button, Section } from 'react-bulma-components'
 import styled from 'styled-components'
 import useReactRouter from 'use-react-router'
 import dompurify from 'dompurify'
