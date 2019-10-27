@@ -24,7 +24,7 @@ export function Header() {
         { currentUser.loggedIn ||
           <Navbar.Item>
             <Link to="/signup">
-				  		<Button color="info">登録する</Button>
+				  		<Button color="info" size="small">登録する</Button>
 				  	</Link>
 				  </Navbar.Item>
         }
@@ -92,5 +92,5 @@ const Avatar = styled.img`
   border-radius: 290486px;
 `
 const Image = styled.img`
-  height: 50px;
+  height: 35px;
 `
